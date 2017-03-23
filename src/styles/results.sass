@@ -1,0 +1,355 @@
+.ResultsContainer
+  padding-top: 155px
+
+.Course
+  max-width: 750px
+  margin: 0 auto
+  margin-top: 30px
+  overflow: auto
+  background-color: white
+  padding: 30px 0px
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 10px 10px rgba(0, 0, 0, 0)
+
+  @media (max-width: 750px)
+    margin: 30px
+
+  .anchor
+    display: block
+    position: relative
+    top: -230px
+    visibility: hidden
+
+  > div
+    padding-bottom: 30px
+
+  // Course -> Heading
+  // The upper-most container for course's
+  // department and abbreviation, title, hours, etc.
+
+  &__heading
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0px 30px
+
+    &__name
+      max-width: 400px
+      
+      > h1
+        font-size: 3.6rem
+        > span
+          font-weight: 800
+      
+      > h2
+        padding-top: 5px
+        color: gray
+        font-size: 1.5rem
+
+    &__info
+      > p
+        font-size: 1.6rem
+        text-transform: uppercase
+        > span
+          color: white
+          background: linear-gradient(133deg, #484848, #191919);
+          border-radius: 8px
+          padding: 5px 10px
+          font-weight: 200
+
+  // Course -> Header
+  // This is a title above certain sections
+
+  &__header
+    padding-left: 30px
+    font-weight: 800
+    font-size: 2.4rem
+
+.CourseDescription
+  margin-top: 0px
+  padding-top: 10px
+  padding-left: 30px
+  padding-right: 30px
+
+  &__comments
+    margin-top: 20px
+
+  > div
+    display: flex
+    flex-direction: column
+
+    > .title
+      font-size: 0.8rem
+      font-weight: 800
+      text-transform: uppercase
+
+    > .content
+      color: gray
+      font-size: 0.95rem
+      line-height: 1.2rem
+      margin-top: 10px
+
+.Section
+  margin-top: 20px
+  display: flex
+  flex-direction: row
+
+  &__content
+    flex-grow: 1
+    
+  &__intervals
+    display: flex
+    flex-direction: column
+    justify-content: center
+  
+  &__container
+    display: flex
+    flex-direction: row
+    width: 100%
+    padding: 0px
+    padding-right: 30px
+    padding-left: 30px
+    justify-content: space-between
+
+  &:nth-child(odd)
+    background-color: lighten(gray, 47)
+    padding-bottom: 20px
+    padding-top: 20px
+    border-bottom: 1px solid lighten(gray, 37)
+    border-top: 1px solid lighten(gray, 37)
+
+  &__info
+    margin-right: 10px
+    display: flex
+    flex-direction: column
+    border-radius: 7px
+
+    &__top
+      display: flex
+      justify-content: center
+      margin-bottom: 13px
+
+    .header
+      color: gray
+      font-size: 0.7rem
+      font-weight: 800
+      text-transform: uppercase
+      padding-bottom: 5px
+
+    &__title
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      .number
+        color: black
+        font-size: 2.6rem
+  
+.StudentCounter
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-top: 4px
+  width: 120px
+
+  &__percent
+    font-size: 0.95rem
+    padding-bottom: 6px
+
+  &__amount
+    font-size: 0.77rem
+    padding-bottom: 16px
+    color: gray
+
+  &__bar
+    //width: 110%
+    width: 100%
+    height: 20px
+    border-radius: 10px
+    background: lighten(gray, 37)
+    //border: 2px solid lighten(gray, 30)
+    overflow: hidden
+
+    > div
+      height: 100%
+
+    &--low
+      width: 25%
+      background: linear-gradient(90deg, rgb(106, 225, 107), rgb(38, 131, 38))
+
+    &--less
+      width: 40%
+      background: linear-gradient(90deg, rgb(106, 225, 107), rgb(38, 131, 38))
+
+    &--medium
+      width: 50%
+      background: linear-gradient(90deg, rgb(231, 203, 102), rgb(185, 152, 33))
+
+    &--high
+      width: 60%
+      background: linear-gradient(90deg, rgb(216, 109, 79), rgb(129, 59, 29))
+
+    &--higher
+      width: 72%
+      background: linear-gradient(90deg, rgb(216, 109, 79), rgb(129, 59, 29))
+
+    &--highest
+      width: 77%
+      background: linear-gradient(90deg, rgb(216, 79, 79), rgb(129, 29, 29))
+
+    &--danger
+      width: 85%
+      background: linear-gradient(90deg, rgb(175, 42, 42), rgb(90, 18, 18))
+
+    &--full
+      width: 100%
+      background: linear-gradient(90deg, rgb(175, 42, 42), rgb(90, 18, 18))
+
+.Interval
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  padding: 13px
+  padding-left: 25px
+  padding-top: 8px
+
+  &__emblems
+    padding-top: 10px
+    display: flex
+    align-items: center
+
+    h4
+      color: gray
+      font-size: 0.7rem
+      font-weight: 800
+      text-transform: uppercase
+      padding-bottom: 5px
+      margin-right: 8px
+
+    .emblem
+
+      .__react_component_tooltip
+        padding: 0
+        border-radius: 8px
+        background-color: black !important
+
+      &__tooltip
+
+        &__internal
+          padding: 10px
+          display: flex
+          flex-direction: row
+
+          > div
+            padding-left: 10px
+
+            h3
+              font-weight: 800
+              text-transform: uppercase
+              font-size: 0.8rem
+              padding-bottom: 6px
+
+          > img
+            $size: 60px
+            width: $size
+            height: $size
+
+      &__container
+        display: flex
+        align-items: center
+        
+        > h3
+          font-size: 0.7rem
+          text-transform: uppercase
+          margin-right: 12px
+          color: gray
+          
+        > img
+          $size: 24px
+          width: $size
+          height: $size
+          margin-right: 8px
+
+  &__portion
+    display: flex
+    justify-content: flex-start
+
+    > div
+      padding-right: 15px
+
+  &__info
+    text-align: left
+    width: 170px
+
+    > div
+      display: block
+      padding-bottom: 8px
+
+    &__time
+      font-style: italic
+      color: lighten(gray, 15)
+
+      span
+        color: black
+        font-weight: bold
+        font-style: normal
+
+    &__time.tba
+      color: gray
+
+    &__location
+
+      .building
+        //font-weight: bold
+
+    &__location.tba
+      color: gray
+
+.Dates
+  background-color: lighten(gray, 37)
+  border-radius: 10px
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  position: relative
+  background-color: lighten(gray, 37)
+
+  .info-overlay
+    position: absolute
+    top: 0px
+    left: 0px
+    width: 100%
+    height: 100%
+    border-radius: 10px
+    color: gray
+    font-size: 0.86rem
+    font-weight: 600
+    background-color: transparentize(lighten(gray, 37), 0.5)
+    padding: 6px 10px
+    display: flex
+    align-items: center
+    justify-content: center
+    //border-radius: 8px
+
+  &__date
+    width: 35px
+    text-align: center
+    color: lighten(gray, 20)
+    padding: 7px
+    padding-top: 14px
+    padding-bottom: 14px
+    //background-color: lighten(gray, 37)
+    //border-right: 1px solid gray
+    // to change to blur:
+    //color: transparent;
+    //text-shadow: 0 0 3px rgba(0,0,0,0.5);
+
+    &:last-child
+      border-right: none
+
+  &__date--selected
+    //box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+    transform: scale(1.2)
+    border-radius: 8px
+    background: linear-gradient(133deg, rgb(72, 72, 72), rgb(25, 25, 25));
+    color: white

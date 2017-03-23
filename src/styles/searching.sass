@@ -1,0 +1,112 @@
+.course-anim
+
+
+  &-exit
+    opacity: 1
+
+    &-active
+      opacity: 0.1
+      transition: opacity 500ms ease-in
+
+.SearchContainer
+  -webkit-backdrop-filter: blur(4px)
+  backdrop-filter: blur(4px)
+  background-color: transparentize(white, 0.08)
+  //margin: 20px
+  margin-bottom: 30px
+  box-shadow: 0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.02)
+  //width: 70%
+  position: fixed
+  left: 0px
+  top: 0px
+  z-index: 1000
+  width: 100%
+  transition: all 0.4s
+
+  input
+    background: none
+  
+  &__tools
+    position: absolute
+    top: 80px
+    right: 20px
+    padding: 30px
+    border-radius: 8px
+    color: white
+    background-color: transparentize(black, 0.2)
+    -webkit-backdrop-filter: blur(2px)
+    backdrop-filter: blur(2px)
+    display: none
+
+    &:before
+      content: '';
+      margin: -35px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      filter: blur(20px);
+      z-index: -1;
+
+  &__bottom
+    height: 50px
+    background-color: transparentize(lighten(gray, 46), 0.2)
+    border-top: 1px solid lighten(gray, 37)
+    border-bottom: 1px solid lighten(gray, 37)
+    font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
+    overflow: hidden
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+    &__jump
+      display: flex
+      align-items: center
+
+      > span
+        min-width: 120px
+        font-style: italic
+        color: gray
+        padding: 0px 20px
+
+      > a
+        min-width: 120px
+        text-align: center
+        background: white
+        color: darken(gray, 10)
+        border-radius: 8px
+        margin: 10px 5px
+        padding: 7px 4px
+        text-decoration: none
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)
+        transition: all 0.2s
+
+        &:hover
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+
+        &:visited
+          color: darken(gray, 10)
+    // &:hover
+  //   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.13), 0 10px 10px rgba(0, 0, 0, 0.08)
+  //   width: 73%
+
+.SearchInput
+
+  &__Input
+    width: 100%
+    padding: 28px 40px
+    font-size: 2em
+    font-weight: 200
+    border: none
+    transition: all 0.4s
+
+    // &:hover
+    //   padding: 28px 50px
+    //   outline: none
+
+    &:focus
+      // We can experiment with this later
+      // padding: 33px 50px
+      // font-size: 2.5em 
+      outline: none
