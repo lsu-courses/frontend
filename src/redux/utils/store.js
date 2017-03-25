@@ -3,9 +3,6 @@ import { enableBatching } from "redux-batched-actions";
 import thunk from "redux-thunk";
 import { apiMiddleware } from 'redux-api-middleware';
 
-console.log(thunk)
-console.log(apiMiddleware)
-
 import reducers from "./reducers";
 import DevTools from "./devtools";
 
