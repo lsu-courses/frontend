@@ -1,11 +1,5 @@
-//var getAccessToken = require("../../common/utils/access_token.js").getAccessToken
-
 import { CALL_API } from "redux-api-middleware";
 import querystring from "querystring"
-
-function getToken() {
-  return "placeholder";
-}
 
 const createAPIAction = ({ name, endpoint, method, body = {}, query }) => {
   const headers = {
@@ -23,9 +17,6 @@ const createAPIAction = ({ name, endpoint, method, body = {}, query }) => {
       }
     };
   } else {
-    console.log("Attempting to send");
-    console.log(body);
-
     return {
       [CALL_API]: {
         endpoint,

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import DebounceInput from "react-debounce-input";
-import searchStruct from "utils/searchStruct";
 
 class SearchInput extends Component {
   constructor(props) {

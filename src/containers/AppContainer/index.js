@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SearchContainer from "containers/SearchContainer";
 import ResultsContainer from "containers/ResultsContainer";
-import InformationContainer from "containers/InformationContainer";
 
 import "styles/index.sass";
 

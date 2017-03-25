@@ -2,6 +2,14 @@ import React from "react";
 import CourseDescription from "components/Results/CourseDescription";
 import Section from "components/Results/Section";
 
+const haveSameName = sections => {
+  const name = sections[0].title;
+  sections.forEach(sec => {
+    if (sec.title !== name) return false;
+  });
+  return true;
+};
+
 const Course = (
   {
     course: {
@@ -18,11 +26,10 @@ const Course = (
   <div className="Course animated fadeInUp">
     <span className="anchor" id={`${number}`} />
 
-    {/* COURSE HEADER: Title, number, hours, etc. */}
     <div className="Course__heading">
       <div className="Course__heading__name">
         <h1><span>{abbreviation}</span> {number}</h1>
-        <h2>{full_title || "Full Title Not Found"}</h2>
+        {full_title ? <h2>{full_title}</h2> : undefined}
       </div>
 
       <div className="Course__heading__info">
@@ -44,13 +51,5 @@ const Course = (
 
   </div>
 );
-
-const haveSameName = sections => {
-  const name = sections[0].title;
-  sections.forEach(sec => {
-    if (sec.title !== name) return false;
-  });
-  return true;
-};
 
 export default Course;

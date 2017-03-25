@@ -1,6 +1,26 @@
 import React from "react";
 import Case from "case";
 
+const replaceAll = (target, search, replacement) => {
+  return target.replace(new RegExp(search, "g"), replacement);
+};
+
+const processComments = comments => {
+  let newComment = Case.sentence(comments.join(" ").toLowerCase());
+  let replacements = [
+    ["tba", "TBA"],
+    ["Lec", "Lecture"],
+    ["prereq", "pre-requisite"],
+    ["aleks", "ALEKS"],
+    ["lsu", "LSU"],
+    ["nov", "Nov"]
+  ];
+  replacements.forEach(
+    rep => newComment = replaceAll(newComment, rep[0], rep[1])
+  );
+  return newComment;
+};
+
 const CourseDescription = ({ description, comments }) => (
   <div className="CourseDescription">
     <div className="CourseDescription__desc">
@@ -21,25 +41,5 @@ const CourseDescription = ({ description, comments }) => (
 
   </div>
 );
-
-const processComments = comments => {
-  let newComment = Case.sentence(comments.join(" ").toLowerCase());
-  let replacements = [
-    ["tba", "TBA"],
-    ["Lec", "Lecture"],
-    ["prereq", "pre-requisite"],
-    ["aleks", "ALEKS"],
-    ["lsu", "LSU"],
-    ["nov", "Nov"]
-  ];
-  replacements.forEach(
-    rep => newComment = replaceAll(newComment, rep[0], rep[1])
-  );
-  return newComment;
-};
-
-const replaceAll = (target, search, replacement) => {
-  return target.replace(new RegExp(search, "g"), replacement);
-};
 
 export default CourseDescription;
