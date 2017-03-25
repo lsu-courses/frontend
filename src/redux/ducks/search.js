@@ -111,7 +111,7 @@ export const filterDepartment = (filter, change) => ({
   payload: { filter, change }
 });
 
-const url = process.env.API_URL || "http://localhost:8080";
+const url = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 export const requestDepartment = dept =>
   createAPIAction({
