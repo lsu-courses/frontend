@@ -51,7 +51,7 @@ const Interval = (
           ? <div className="Interval__info__time">
               <span>{formatTime(start)}</span> → <span>{formatTime(end)}</span>
             </div>
-          : <div className className="Interval__info__time tba">Time TBA</div>}
+          : <div className="Interval__info__time tba">Time TBA</div>}
 
         {location_building || location_room
           ? <div className="Interval__info__location">
@@ -99,7 +99,7 @@ function getEmblem(type) {
         delayShow={0}
       >
         <div className="emblem__tooltip__internal">
-          <img src={src} />
+          <img src={src} alt="emblem" />
           <div>
             <h3>{getEmblemTitle(type)}</h3><p>{getEmblemText(type)}</p>
           </div>
@@ -107,7 +107,7 @@ function getEmblem(type) {
       </Tooltip>
 
       <div className="emblem__container" data-tip data-for={tooltipID}>
-        <img src={src} />
+        <img src={src} alt="emblem" />
         <h3>{getEmblemTitle(type)}</h3>
       </div>
 
@@ -153,8 +153,11 @@ function formatInstructor(inst) {
 function formatTime(time) {
   if (time.toLowerCase().includes("n")) {
     time = time.slice(0, 2) + ":" + time.slice(2, -1) + " PM";
-    if (time.startsWith("0")) return time.slice(1);
-    else return time;
+    if (time.substr(0, 1) === "0") {
+      return time.slice(1);
+    } else {
+      return time;
+    }
   } else {
     return (time.slice(0, -2)[0] === "0"
       ? time.slice(1, -2)
@@ -162,13 +165,6 @@ function formatTime(time) {
       ":" +
       time.slice(-2);
   }
-}
-
-if (!String.prototype.startsWith) {
-  String.prototype.startsWith = function(searchString, position) {
-    position = position || 0;
-    return this.substr(position, searchString.length) === searchString;
-  };
 }
 
 export default Interval;

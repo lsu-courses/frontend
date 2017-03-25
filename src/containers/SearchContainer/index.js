@@ -21,17 +21,7 @@ class SearchContainer extends Component {
   }
 
   _performSearch(input) {
-    const departments = [
-      "math",
-      "csc",
-      "hnrs",
-      "biol",
-      "engr",
-      "econ",
-      "mus",
-      "chem"
-    ];
-    const { text, array, rest } = this.processInput(input);
+    const { array, rest } = this.processInput(input);
 
     if (input.length < 2) {
       return this.props.clearDepartment();
