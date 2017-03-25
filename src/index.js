@@ -18,7 +18,6 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept("./containers/AppContainer", () => {
-    console.log("Reload pls?");
     const NextApp = require("./containers/AppContainer").default;
     ReactDOM.render(
       <Provider store={store}>
