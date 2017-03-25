@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Course from "components/Results/Course";
+import Loading from "components/Results/Loading";
 
 class ResultsContainer extends Component {
   render() {
     return (
       <div className="ResultsContainer">
         {this.props.current_loading
-          ? <div>Loading...</div>
+          ? <Loading />
           : this.props.current_set.map((course, i) => (
               <Course course={course} key={i} />
             ))}

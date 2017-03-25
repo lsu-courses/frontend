@@ -1,6 +1,38 @@
 .ResultsContainer
   padding-top: 155px
 
+  &__loading
+    text-align: center
+    height: 10rem
+
+    h1
+      padding-top: 2rem
+      font-size: 2rem
+      color: gray
+
+    div.spinner
+      border-radius: 50%
+      width: 10em
+      height: 10em
+      margin: 60px auto
+      font-size: 10px
+      position: relative
+      text-indent: -9999em
+      border-top: 1.1em solid rgba(0, 0, 0, 0)
+      border-right: 1.1em solid rgba(0, 0, 0, 0)
+      border-bottom: 1.1em solid rgba(0, 0, 0, 0)
+      border-left: 1.1em solid lighten(gray, 27)
+      transform: translateZ(0)
+      animation: load 1.1s infinite linear
+
+    @keyframes load
+      0%
+        transform: rotate(0deg)
+
+      100%
+        transform: rotate(360deg)
+
+
 .Course
   max-width: 750px
   margin: 0 auto
@@ -35,12 +67,12 @@
 
     &__name
       max-width: 400px
-      
+
       > h1
         font-size: 3.6rem
         > span
           font-weight: 800
-      
+
       > h2
         padding-top: 5px
         color: gray
@@ -96,12 +128,12 @@
 
   &__content
     flex-grow: 1
-    
+
   &__intervals
     display: flex
     flex-direction: column
     justify-content: center
-  
+
   &__container
     display: flex
     flex-direction: row
@@ -144,7 +176,7 @@
       .number
         color: black
         font-size: 2.6rem
-  
+
 .StudentCounter
   display: flex
   flex-direction: column
@@ -257,13 +289,13 @@
       &__container
         display: flex
         align-items: center
-        
+
         > h3
           font-size: 0.7rem
           text-transform: uppercase
           margin-right: 12px
           color: gray
-          
+
         > img
           $size: 24px
           width: $size
