@@ -5,46 +5,50 @@ import {
   performSearch,
   requestDepartment,
   filterDepartment,
-  clearDepartment
+  clearDepartment,
+  setGlobalSearch
 } from "redux/ducks/search";
 
 class SearchContainer extends Component {
-  processInput(input) {
+  _processInput(input) {
     const lower = input.toLowerCase();
-    const array = lower.split(" ");
+    const searchInputArray = lower.split(" ");
 
     return {
-      text: lower,
-      array: array,
-      rest: array.length > 1 ? lower.slice(lower.indexOf(" ")).trim() : ""
+      searchInputArray,
+      rest: searchInputArray.length > 1
+        ? lower.slice(lower.indexOf(" ")).trim()
+        : ""
     };
   }
 
   _performSearch(input) {
-    const { array, rest } = this.processInput(input);
+    this.props.setGlobalSearch(input)
 
-    if (input.length < 2) {
+    const { searchInputArray, rest } = this._processInput(input);
+
+    if (input.length < 3) {
       return this.props.clearDepartment();
     }
 
-    if (isNaN(array[0])) {
+    const firstWord = searchInputArray[0];
+
+    if (isNaN(firstWord)) {
       //if (departments.includes(array[0])) {
       if (true) {
-        const { department_cache } = this.props;
-        const first = array[0];
 
-        if (this.props.current_department === first) {
+        if (this.props.current_department === firstWord) {
           // The department currently in the working set is the department
           // that the user typed. Do nothing except re-filter
           this.props.filterDepartment(rest);
         } else {
-          if (department_cache[first]) {
+          if (this.props.department_cache[firstWord]) {
             // Department found in cache
             // REDUX: selectDepartmentFromCache
             // - set selected dep
             // - fill working set with dep's courses
             // - filter working set based on criteria
-            this.props.filterDepartment(rest, first);
+            this.props.filterDepartment(rest, firstWord);
           } else {
             // department not found in cache
             // REDUX: requestDepartmentContent
@@ -55,7 +59,7 @@ class SearchContainer extends Component {
             // - filter working set based on criteria
 
             this.props
-              .requestDepartment(array[0])
+              .requestDepartment(firstWord)
               .then(() => this.props.filterDepartment(rest));
           }
         }
@@ -130,7 +134,8 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     clearDepartment: () => dispatch(clearDepartment()),
     requestDepartment: dept => dispatch(requestDepartment(dept)),
     filterDepartment: (filter, change) =>
-      dispatch(filterDepartment(filter, change))
+      dispatch(filterDepartment(filter, change)),
+    setGlobalSearch: (input) => dispatch(setGlobalSearch(input))
   };
 };
 
