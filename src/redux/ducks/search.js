@@ -114,7 +114,8 @@ export const filterDepartment = (filter, change) => ({
 export const requestDepartment = dept =>
   createAPIAction({
     name: REQUEST_DEPARTMENT,
-    endpoint: "http://localhost:8080/department",
+    //endpoint: "http://localhost:8080/department",
+    endpoint: "https://lsu-api.herokuapp.com/department",
     method: "GET",
     query: { dept }
   });
