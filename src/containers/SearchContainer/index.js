@@ -75,6 +75,21 @@ class SearchContainer extends Component {
     }
   }
 
+  _renderBottomBar() {
+    return (
+      <div className="SearchContainer__bottom">
+        <div className="SearchContainer__bottom__jump">
+          <span>Jump to...</span>
+          {this.props.current_set.map((item, i) => (
+            <a className="animated fadeIn" key={i} href={`#${item.number}`}>
+              {item.abbreviation} {item.number}
+            </a>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="SearchContainer">
@@ -83,16 +98,7 @@ class SearchContainer extends Component {
           <SearchInput performSearch={this._performSearch.bind(this)} />
         </div>
 
-        <div className="SearchContainer__bottom">
-          <div className="SearchContainer__bottom__jump">
-            <span>Jump to...</span>
-            {this.props.current_set.map((item, i) => (
-              <a className="animated fadeIn" key={i} href={`#${item.number}`}>
-                {item.abbreviation} {item.number}
-              </a>
-            ))}
-          </div>
-        </div>
+        { this.props.current_set.length > 0 ? this._renderBottomBar() : null }
 
         <div className="SearchContainer__tools">
           Tools and tool buttons will go here
