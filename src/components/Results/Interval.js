@@ -26,6 +26,10 @@ const Interval = (
     s_req_inst_perm,
     s_majors_only,
     s_cmi,
+    s_cmi_written,
+    s_cmi_spoken,
+    s_cmi_tech,
+    s_cmi_visual,
     s_svc,
     comments
   }
@@ -71,10 +75,13 @@ const Interval = (
 
     <div className="Interval__bottom Interval__portion">
       <div className="Interval__emblems">
-        <h4 />
         {s_night && getEmblem("night")}
         {is_lab && getEmblem("lab")}
-        {s_cmi && getEmblem("cmi")}
+        {/*s_cmi && getEmblem("cmi")*/}
+        {s_cmi_spoken && getEmblem("cmi_spoken")}
+        {s_cmi_written && getEmblem("cmi_written")}
+        {s_cmi_visual && getEmblem("cmi_visual")}
+        {s_cmi_tech && getEmblem("cmi_tech")}
         {s_majors_only && getEmblem("majors_only")}
         {s_all_web && getEmblem("all_web")}
         {s_most_web && getEmblem("most_web")}
@@ -87,7 +94,6 @@ const Interval = (
 
 function getEmblem(type) {
   let tooltipID = type + "-tooltip";
-  let src = `/${type}.png`;
 
   return (
     <div className="emblem">
@@ -99,7 +105,7 @@ function getEmblem(type) {
         delayShow={0}
       >
         <div className="emblem__tooltip__internal">
-          <img src={src} alt="emblem" />
+          <img src={getIconSrc(type)} alt="emblem" />
           <div>
             <h3>{getEmblemTitle(type)}</h3><p>{getEmblemText(type)}</p>
           </div>
@@ -107,7 +113,7 @@ function getEmblem(type) {
       </Tooltip>
 
       <div className="emblem__container" data-tip data-for={tooltipID}>
-        <img src={src} alt="emblem" />
+        <img src={getIconSrc(type)} alt="emblem" />
         <h3>{getEmblemTitle(type)}</h3>
       </div>
 
@@ -115,10 +121,23 @@ function getEmblem(type) {
   );
 }
 
+function getIconSrc(type) {
+  if (type.includes("web")) return "/online.png";
+  if (type === "lab") return "/lab.png";
+  if (type === "night") return "/night.png";
+  if (type === "cmi_written") return "/written.png";
+  if (type === "cmi_spoken") return "/spoken.png";
+  if (type.includes("cmi")) return "/com.png";
+}
+
 function getEmblemTitle(type) {
   if (type === "lab") return "Lab";
   if (type === "night") return "Night Course";
-  if (type === "cmi") return "Communication Intensive";
+  if (type === "cmi") return "Com. Intensive";
+  if (type === "cmi_written") return "Intesive: Writing";
+  if (type === "cmi_spoken") return "Intesive: Speaking";
+  if (type === "cmi_tech") return "Intesive: Technical";
+  if (type === "cmi_visual") return "Intesive: Visual";
   if (type === "majors_only") return "Majors Only";
   if (type === "all_web") return "Online";
   if (type === "most_web") return "Mostly Online";
@@ -131,6 +150,7 @@ function getEmblemText(type) {
   if (type === "night") return "The day(s) above are held at night.";
   if (type === "lab") return "The day(s) above are a lab.";
   if (type === "cmi") return "The day(s) above are communication intensive.";
+  if (type === "cmi_written") return "Writing";
   if (type === "majors_only") return "The day(s) above are for majors only.";
   if (type === "all_web") return "The day(s) above are entirely online.";
   if (type === "most_web") return "The day(s) above are mostly online.";

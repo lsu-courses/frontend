@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Course from "components/Results/Course";
 import Loading from "components/Results/Loading";
 import EmptyState from "components/Results/EmptyState";
-import Instructions from "components/Instructions"
+import Instructions from "components/Instructions";
 
 class ResultsContainer extends Component {
   _renderResults() {

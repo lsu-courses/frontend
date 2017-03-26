@@ -15,7 +15,7 @@ class SearchInput extends Component {
       <div className="SearchInput">
         <DebounceInput
           minLength={0}
-          debounceTimeout={300}
+          debounceTimeout={500}
           className="SearchInput__Input"
           type="text"
           placeholder="Search"

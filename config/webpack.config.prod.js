@@ -8,6 +8,8 @@ var url = require("url");
 var paths = require("./paths");
 var getClientEnvironment = require("./env");
 
+var Visualizer = require("webpack-visualizer-plugin");
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 var publicPath = paths.servedPath;
@@ -233,6 +235,10 @@ module.exports = {
     // having to parse `index.html`.
     new ManifestPlugin({
       fileName: "asset-manifest.json"
+    }),
+
+    new Visualizer({
+      filename: "./statistics.html"
     })
   ],
   // Some libraries import Node modules but don't use them in the browser.

@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import { enableBatching } from "redux-batched-actions";
 import thunk from "redux-thunk";
-import { apiMiddleware } from 'redux-api-middleware';
+import { apiMiddleware } from "redux-api-middleware";
 
 import reducers from "./reducers";
 import DevTools from "./devtools";
@@ -12,6 +11,6 @@ const enhancer = compose(
 );
 
 export default function configureStore(initialState = {}) {
-  const store = createStore(enableBatching(reducers), initialState, enhancer);
+  const store = createStore(reducers, initialState, enhancer);
   return store;
 }

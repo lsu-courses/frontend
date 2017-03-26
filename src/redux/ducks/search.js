@@ -91,8 +91,15 @@ export default function reducer(state = defaultState, action) {
             });
           } else {
             // REturn all courses whose number includes filter
-            //set = filter_fast(set, s => s.number.includes(filter));
-            set = set.filter(s => s.number.includes(filter));
+            let filtered_set = [];
+
+            for (let i = 0; i < set.length; i++) {
+              let item = set[i];
+              if (item.number == filter) filtered_set.push(item);
+              else if (item.number.includes(filter)) filtered_set.push(item);
+            }
+
+            set = filtered_set;
           }
         }
 
@@ -126,7 +133,7 @@ export const setGlobalSearch = input => ({
   payload: { input }
 });
 
-const url = process.env.REACT_APP_API_URL || "http://localhost:8080";
+let url = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 export const requestDepartment = dept =>
   createAPIAction({
@@ -134,15 +141,4 @@ export const requestDepartment = dept =>
     endpoint: url + "/department",
     method: "GET",
     query: { dept }
-  });
-
-export const performSearch = input =>
-  createAPIAction({
-    name: PERFORM_SEARCH,
-    endpoint: "http://localhost:8080",
-    method: "GET",
-    query: {
-      test: "test",
-      input: input
-    }
   });

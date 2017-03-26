@@ -23,7 +23,7 @@ class SearchContainer extends Component {
   }
 
   _performSearch(input) {
-    this.props.setGlobalSearch(input)
+    this.props.setGlobalSearch(input);
 
     const { searchInputArray, rest } = this._processInput(input);
 
@@ -36,7 +36,6 @@ class SearchContainer extends Component {
     if (isNaN(firstWord)) {
       //if (departments.includes(array[0])) {
       if (true) {
-
         if (this.props.current_department === firstWord) {
           // The department currently in the working set is the department
           // that the user typed. Do nothing except re-filter
@@ -58,9 +57,9 @@ class SearchContainer extends Component {
             // - fill working set with dep's courses
             // - filter working set based on criteria
 
-            this.props
-              .requestDepartment(firstWord)
-              .then(() => this.props.filterDepartment(rest));
+            this.props.requestDepartment(firstWord).then(() => {
+              this.props.filterDepartment(rest);
+            });
           }
         }
 
@@ -91,7 +90,7 @@ class SearchContainer extends Component {
           ))}
         </div>
       </div>
-    )
+    );
   }
 
   render() {
@@ -102,7 +101,7 @@ class SearchContainer extends Component {
           <SearchInput performSearch={this._performSearch.bind(this)} />
         </div>
 
-        { this.props.current_set.length > 0 ? this._renderBottomBar() : null }
+        {this.props.current_set.length > 0 ? this._renderBottomBar() : null}
 
         <div className="SearchContainer__tools">
           Tools and tool buttons will go here
@@ -135,7 +134,7 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     requestDepartment: dept => dispatch(requestDepartment(dept)),
     filterDepartment: (filter, change) =>
       dispatch(filterDepartment(filter, change)),
-    setGlobalSearch: (input) => dispatch(setGlobalSearch(input))
+    setGlobalSearch: input => dispatch(setGlobalSearch(input))
   };
 };
 

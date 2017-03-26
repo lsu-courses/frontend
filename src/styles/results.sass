@@ -1,6 +1,10 @@
 .ResultsContainer
   padding-top: 12rem
   padding-bottom: 5rem
+  height: 100vh
+
+  @media (max-width: 750px)
+    padding-top: 9rem
 
   &__loading
     text-align: center
@@ -51,11 +55,11 @@
   overflow: auto
   background-color: white
   padding: 30px 0px
-  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 10px 10px rgba(0, 0, 0, 0)
 
   @media (max-width: 750px)
-    margin: 30px
+    margin: 17px
 
   .anchor
     display: block
@@ -76,6 +80,11 @@
     align-items: center
     padding: 0px 30px
 
+    @media (max-width: 750px)
+      flex-direction: column
+      padding: 0px 20px
+      align-items: flex-start
+
     &__name
       max-width: 400px
 
@@ -89,16 +98,31 @@
         color: gray
         font-size: 1.5rem
 
+      @media (max-width: 750px)
+        > h1
+          font-size: 2.5rem
+
+        > h2
+          font-size: 1.2rem
+
     &__info
+
       > p
         font-size: 1.6rem
         text-transform: uppercase
+
         > span
           color: white
           background: linear-gradient(133deg, #484848, #191919);
           border-radius: 8px
           padding: 5px 10px
           font-weight: 200
+
+      @media (max-width: 750px)
+        margin-top: 20px
+
+        > p
+          font-size: 1.05rem
 
   // Course -> Header
   // This is a title above certain sections
@@ -108,11 +132,19 @@
     font-weight: 800
     font-size: 2.4rem
 
+    @media (max-width: 750px)
+      padding-left: 20px
+      font-size: 2rem
+
 .CourseDescription
   margin-top: 0px
   padding-top: 10px
   padding-left: 30px
   padding-right: 30px
+
+  @media (max-width: 750px)
+    padding-left: 20px
+    padding-right: 20px
 
   &__comments
     margin-top: 20px
@@ -154,6 +186,11 @@
     padding-left: 30px
     justify-content: space-between
 
+    @media (max-width: 750px)
+      padding-left: 0px
+      padding-right: 0px
+      flex-direction: column
+
   &:nth-child(odd)
     background-color: lighten(gray, 47)
     padding-bottom: 20px
@@ -167,10 +204,20 @@
     flex-direction: column
     border-radius: 7px
 
+    @media (max-width: 750px)
+      flex-direction: row
+      align-items: center
+      justify-content: space-around
+      margin-right: 0
+      margin-bottom: 12px
+
     &__top
       display: flex
       justify-content: center
       margin-bottom: 13px
+
+      @media (max-width: 750px)
+        margin: 0
 
     .header
       color: gray
@@ -178,6 +225,9 @@
       font-weight: 800
       text-transform: uppercase
       padding-bottom: 5px
+
+      @media (max-width: 750px)
+        font-size: 0.85rem
 
     &__title
       display: flex
@@ -188,12 +238,18 @@
         color: black
         font-size: 2.6rem
 
+        @media (max-width: 750px)
+          font-size: 2.8rem
+
 .StudentCounter
   display: flex
   flex-direction: column
   align-items: center
   padding-top: 4px
   width: 120px
+
+  @media (max-width: 750px)
+    width: 150px
 
   &__percent
     font-size: 0.95rem
@@ -205,12 +261,10 @@
     color: gray
 
   &__bar
-    //width: 110%
     width: 100%
     height: 20px
     border-radius: 10px
     background: lighten(gray, 37)
-    //border: 2px solid lighten(gray, 30)
     overflow: hidden
 
     > div
@@ -252,9 +306,29 @@
   display: flex
   flex-direction: column
   justify-content: flex-start
-  padding: 13px
+  padding: 7px
   padding-left: 25px
   padding-top: 8px
+
+  @media (max-width: 750px)
+    padding-top: 22px
+    border-top: 1px dashed lighten(gray, 37)
+
+  &__instructors
+    @media (max-width: 750px)
+      text-align: center
+      color: gray
+   
+  &__dates
+    margin-right: 18px
+
+    @media (max-width: 750px)
+      display: flex
+      justify-content: center
+      margin-right: 0px
+
+  &:last-of-type
+    padding-bottom: 0px
 
   &__emblems
     padding-top: 10px
@@ -309,6 +383,7 @@
 
         > img
           $size: 24px
+          transform: scale(1.1)
           width: $size
           height: $size
           margin-right: 8px
@@ -317,12 +392,24 @@
     display: flex
     justify-content: flex-start
 
+    @media (max-width: 750px)
+      flex-direction: column
+
+    .positional-container
+      display: flex
+
     > div
       padding-right: 15px
+
+      @media (max-width: 750px)
+        margin-bottom: 15px
 
   &__info
     text-align: left
     width: 170px
+
+    @media (max-width: 750px)
+      width: 100%
 
     > div
       display: block
@@ -332,18 +419,21 @@
       font-style: italic
       color: lighten(gray, 15)
 
+      @media (max-width: 750px)
+       text-align: center
+
       span
         color: black
         font-weight: bold
         font-style: normal
+        
 
     &__time.tba
       color: gray
 
     &__location
-
-      .building
-        //font-weight: bold
+      @media (max-width: 750px)
+        text-align: center
 
     &__location.tba
       color: gray
@@ -375,11 +465,11 @@
     //border-radius: 8px
 
   &__date
-    width: 35px
+    width: 36px
     text-align: center
     color: lighten(gray, 20)
     padding: 7px
-    padding-top: 14px
+    padding-top: 16px
     padding-bottom: 14px
     //background-color: lighten(gray, 37)
     //border-right: 1px solid gray

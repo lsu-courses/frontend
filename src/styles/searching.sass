@@ -54,7 +54,7 @@
     background-color: transparentize(lighten(gray, 46), 0.2)
     border-top: 1px solid lighten(gray, 37)
     border-bottom: 1px solid lighten(gray, 37)
-    font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
     overflow: hidden
     display: flex
     flex-direction: column
@@ -74,14 +74,18 @@
         color: gray
         padding: 0px 20px
 
+        @media (max-width: 750px)
+          font-size: 0.9rem
+          min-width: 100px
+
       > a
-        min-width: 120px
+        min-width: 115px
         text-align: center
         background: white
         color: darken(gray, 10)
         border-radius: 8px
         margin: 5px
-        padding: 7px 4px
+        padding: 10px 3px
         text-decoration: none
         box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)
         transition: all 0.2s
@@ -89,11 +93,11 @@
         &:hover
           box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
+          @media (max-width: 750px)
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)
+
         &:visited
           color: darken(gray, 10)
-    // &:hover
-  //   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.13), 0 10px 10px rgba(0, 0, 0, 0.08)
-  //   width: 73%
 
 .SearchInput
 
@@ -104,6 +108,10 @@
     font-weight: 200
     border: none
     transition: all 0.4s
+
+    @media (max-width: 750px)
+      font-size: 1.6rem
+      padding: 20px 30px
 
     // &:hover
     //   padding: 28px 50px
