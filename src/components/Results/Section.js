@@ -25,17 +25,10 @@ const Section = (
 
           <div className="Section__info__title">
             <h3 className="header">Section</h3>
-            <span className="number">{number}</span>
+            <span className="number">
+              {number}
+            </span>
           </div>
-
-          {/*<div className="Section__info__emblems">
-            <h3 className="header">Emblems</h3>
-            <div className="emblems">
-              <span>
-                {timeIntervals.map(interval => <pre>{}</pre>)}
-              </span>
-            </div>
-          </div>*/}
 
         </div>
 

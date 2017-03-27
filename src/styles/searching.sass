@@ -54,11 +54,14 @@
     background-color: transparentize(lighten(gray, 46), 0.2)
     border-top: 1px solid lighten(gray, 37)
     border-bottom: 1px solid lighten(gray, 37)
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif
     overflow: hidden
     display: flex
     flex-direction: column
     justify-content: center
+
+    @media (max-width: 750px)
+      height: 60px
 
     &__jump
       display: flex
