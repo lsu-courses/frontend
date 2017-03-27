@@ -55,7 +55,7 @@
   overflow: auto
   background-color: white
   padding: 30px 0px
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande"
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 10px 10px rgba(0, 0, 0, 0)
 
   @media (max-width: 750px)
@@ -334,6 +334,7 @@
 
   &:last-of-type
     padding-bottom: 0px
+    margin-top: 10px
 
   &__emblems
     padding-top: 10px
@@ -407,7 +408,10 @@
       padding-right: 15px
 
       @media (max-width: 750px)
-        margin-bottom: 15px
+        margin-bottom: 12px
+
+        &:last-child
+          margin-bottom: 0px
 
   &__info
     text-align: left
