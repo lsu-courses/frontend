@@ -21,6 +21,7 @@ class SearchInput extends Component {
           placeholder="Search"
           onChange={event => {
             this.setState({ input: event.target.value });
+            console.log(event.target.value);
             this.props.performSearch(event.target.value);
           }}
         />

@@ -8,6 +8,7 @@ import {
   clearDepartment,
   setGlobalSearch
 } from "redux/ducks/search";
+import ReactGA from "react-ga";
 
 class SearchContainer extends Component {
   _processInput(input) {
@@ -15,6 +16,7 @@ class SearchContainer extends Component {
     const searchInputArray = lower.split(" ");
 
     return {
+      text: lower,
       searchInputArray,
       rest: searchInputArray.length > 1
         ? lower.slice(lower.indexOf(" ")).trim()
@@ -25,13 +27,19 @@ class SearchContainer extends Component {
   _performSearch(input) {
     this.props.setGlobalSearch(input);
 
-    const { searchInputArray, rest } = this._processInput(input);
+    const { text, searchInputArray, rest } = this._processInput(input);
 
     if (input.length < 3) {
       return this.props.clearDepartment();
     }
 
     const firstWord = searchInputArray[0];
+
+    ReactGA.event({
+      category: "Search",
+      action: "User Searched",
+      label: text
+    });
 
     if (isNaN(firstWord)) {
       //if (departments.includes(array[0])) {

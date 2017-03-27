@@ -33,7 +33,7 @@
     "http-proxy-middleware": "0.17.3",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
-    "node-sass": "3.3.3",
+    "node-sass": "^4.5.0",
     "object-assign": "4.1.1",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
@@ -58,6 +58,8 @@
     "react": "^15.4.2",
     "react-debounce-input": "^2.4.2",
     "react-dom": "^15.4.2",
+    "react-ga": "^2.1.2",
+    "react-metrics": "^2.3.0",
     "react-redux": "^5.0.3",
     "react-tooltip": "^3.2.9",
     "react-virtualized": "^9.3.0",
@@ -67,9 +69,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "npm rebuild node-sass && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "heroku-prebuild": "npm rebuild node-sass"
+    "heroku-prebuild": ""
   },
   "jest": {
     "collectCoverageFrom": [
