@@ -98,7 +98,7 @@ export default function reducer(state = defaultState, action) {
 
             for (let i = 0; i < set.length; i++) {
               let item = set[i];
-              if (item.number == filter) filtered_set.push(item);
+              if (item.number === filter) filtered_set.push(item);
               else if (item.number.includes(filter)) filtered_set.push(item);
             }
 
