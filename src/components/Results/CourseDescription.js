@@ -29,8 +29,6 @@ const CourseDescription = ({ description, comments }) => (
       <span className="content">{description}</span>
     </div>
 
-    {/* TODO: Maybe use component state to allow for a "Read More..." on the comment section. And shorten it. */}
-
     {comments.length > 0
       ? <div className="CourseDescription__comments">
           <span className="title">Comments</span>

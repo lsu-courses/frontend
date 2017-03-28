@@ -149,11 +149,12 @@ function genEmblems(
 }
 
 function getEmblem(type, comments) {
-  let tooltipID = type + "-tooltip";
+  let tooltipID = type + "-tooltip-" + Math.floor(Math.random() * 50);
   let imgSrc = getIconSrc(type);
   let title = getEmblemTitle(type, comments);
 
-  if (comments !== undefined) tooltipID = type + "-tooltip" + comments[0];
+  if (comments !== undefined)
+    tooltipID += Math.floor(Math.random() * 50);
 
   return (
     <div className="emblem">
@@ -161,6 +162,7 @@ function getEmblem(type, comments) {
       <Tooltip
         className="eblem__tooltip"
         id={tooltipID}
+        data-id={tooltipID}
         effect="solid"
         delayShow={0}
       >
@@ -219,12 +221,18 @@ function getEmblemText(type, comments) {
   if (type === "night") return "The day(s) above are held at night.";
   if (type === "lab") return "The day(s) above are a lab.";
   if (type === "cmi") return "The day(s) above are communication intensive.";
-  if (type === "cmi_written") return "Writing";
+  if (type === "cmi_written")
+    return "Course features intensive writing activities.";
+  if (type === "cmi_spoken")
+    return "Course features intensive speaking activities.";
+  if (type === "cmi_technical")
+    return "Course features intensive technical activities.";
   if (type === "majors_only") return "The day(s) above are for majors only.";
   if (type === "all_web") return "The day(s) above are entirely online.";
   if (type === "most_web") return "The day(s) above are mostly online.";
-  if (type === "half_web") return "";
-  if (type === "some_web") return "";
+  if (type === "half_web") return "The day(s) above are about half online.";
+  if (type === "some_web")
+    return "The day(s) above feature some online content.";
   if (type === "comments") return comments + "";
   return "No specific details";
 }

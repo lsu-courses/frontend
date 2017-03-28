@@ -355,23 +355,32 @@
 
       .__react_component_tooltip
         padding: 0
-        border-radius: 8px
-        background-color: black !important
+        border-radius: 10px
+        background-color: transparentize(white, 0.07) !important
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+        color: black
+        -webkit-backdrop-filter: blur(4px) !important
+        backdrop-filter: blur(4px) !important
+
+        &:after
+          border-top-color: transparentize(white, 0.07) !important
+
+        &:before
+          border-top-color: transparentize(white, 0.07) !important
 
       &__tooltip
 
         &__internal
-          padding: 10px
+          padding: 15px
           display: flex
           flex-direction: row
 
           > div
-            padding-left: 10px
+            padding-left: 15px
 
             h3
               font-weight: 800
-              text-transform: uppercase
-              font-size: 0.8rem
+              font-size: 1.2rem
               padding-bottom: 6px
 
           > img
