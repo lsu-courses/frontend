@@ -6,8 +6,6 @@ import "styles/index.sass";
 
 import ReactGA from "react-ga";
 
-// UA-96232262-1
-
 ReactGA.initialize("UA-96232262-1");
 
 class AppContainer extends Component {

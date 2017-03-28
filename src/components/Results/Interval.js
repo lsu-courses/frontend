@@ -110,40 +110,24 @@ const Interval = (
   );
 };
 
-function genEmblems(
-  {
-    s_night,
-    s_all_web,
-    s_most_web,
-    s_half_web,
-    s_some_web,
-    is_lab,
-    s_cmi_spoken,
-    s_cmi_tech,
-    s_cmi_written,
-    s_cmi_visual,
-    s_majors_only,
-    s_req_dept_perm,
-    s_req_inst_perm,
-    comments
-  }
-) {
+function genEmblems(obj) {
   let emblems = [];
 
-  if (s_night) emblems.push(getEmblem("night"));
-  if (is_lab) emblems.push(getEmblem("lab"));
-  if (s_cmi_spoken) emblems.push(getEmblem("cmi_spoken"));
-  if (s_cmi_written) emblems.push(getEmblem("cmi_written"));
-  if (s_cmi_visual) emblems.push(getEmblem("cmi_visual"));
-  if (s_cmi_tech) emblems.push(getEmblem("cmi_tech"));
-  if (s_all_web) emblems.push(getEmblem("all_web"));
-  if (s_most_web) emblems.push(getEmblem("most_web"));
-  if (s_some_web) emblems.push(getEmblem("some_web"));
-  if (s_half_web) emblems.push(getEmblem("half_web"));
-  if (s_majors_only) emblems.push(getEmblem("majors_only"));
-  if (s_req_dept_perm) emblems.push(getEmblem("req_dept_perm"));
-  if (s_req_inst_perm) emblems.push(getEmblem("req_inst_perm"));
-  if (comments.length > 0) emblems.push(getEmblem("comments", comments));
+  if (obj.s_night) emblems.push(getEmblem("night"));
+  if (obj.is_lab) emblems.push(getEmblem("lab"));
+  if (obj.s_cmi_spoken) emblems.push(getEmblem("cmi_spoken"));
+  if (obj.s_cmi_written) emblems.push(getEmblem("cmi_written"));
+  if (obj.s_cmi_visual) emblems.push(getEmblem("cmi_visual"));
+  if (obj.s_cmi_tech) emblems.push(getEmblem("cmi_tech"));
+  if (obj.s_all_web) emblems.push(getEmblem("all_web"));
+  if (obj.s_most_web) emblems.push(getEmblem("most_web"));
+  if (obj.s_some_web) emblems.push(getEmblem("some_web"));
+  if (obj.s_half_web) emblems.push(getEmblem("half_web"));
+  if (obj.s_majors_only) emblems.push(getEmblem("majors_only"));
+  if (obj.s_req_dept_perm) emblems.push(getEmblem("req_dept_perm"));
+  if (obj.s_req_inst_perm) emblems.push(getEmblem("req_inst_perm"));
+  if (obj.comments.length > 0)
+    emblems.push(getEmblem("comments", obj.comments));
 
   return emblems;
 }
@@ -153,8 +137,7 @@ function getEmblem(type, comments) {
   let imgSrc = getIconSrc(type);
   let title = getEmblemTitle(type, comments);
 
-  if (comments !== undefined)
-    tooltipID += Math.floor(Math.random() * 50);
+  if (comments !== undefined) tooltipID += Math.floor(Math.random() * 50);
 
   return (
     <div className="emblem">
@@ -192,9 +175,12 @@ function getIconSrc(type) {
   if (type.includes("cmi")) return "/com.png";
   if (type === "comments") return "/comments.png";
 
-  if (type === "req_dept_perm") return "/lock_alt.png";
-  if (type === "req_inst_perm") return "/lock_alt.png";
-  if (type === "majors_only") return "/lock_alt.png";
+  if (
+    type === "req_dept_perm" ||
+    type === "req_inst_perm" ||
+    type === "majors_only"
+  )
+    return "/lock_alt.png";
 }
 
 function getEmblemTitle(type, comments) {
@@ -218,30 +204,29 @@ function getEmblemTitle(type, comments) {
 }
 
 function getEmblemText(type, comments) {
-  if (type === "night") return "The day(s) above are held at night.";
-  if (type === "lab") return "The day(s) above are a lab.";
-  if (type === "cmi") return "The day(s) above are communication intensive.";
-  if (type === "cmi_written")
-    return "Course features intensive writing activities.";
-  if (type === "cmi_spoken")
-    return "Course features intensive speaking activities.";
-  if (type === "cmi_technical")
-    return "Course features intensive technical activities.";
-  if (type === "majors_only") return "The day(s) above are for majors only.";
-  if (type === "all_web") return "The day(s) above are entirely online.";
-  if (type === "most_web") return "The day(s) above are mostly online.";
-  if (type === "half_web") return "The day(s) above are about half online.";
-  if (type === "some_web")
-    return "The day(s) above feature some online content.";
+  const days = "The day(s) above are ";
+  const course = "Course features intensive ";
+
+  if (type === "night") return days + "held at night.";
+  if (type === "lab") return days + "a lab.";
+  if (type === "cmi") return days + "communication intensive.";
+  if (type === "cmi_written") return course + "writing activities.";
+  if (type === "cmi_spoken") return course + "speaking activities.";
+  if (type === "cmi_technical") return course + "technical activities.";
+  if (type === "majors_only") return days + "for majors only.";
+  if (type === "all_web") return days + "entirely online.";
+  if (type === "most_web") return days + "mostly online.";
+  if (type === "half_web") return days + "about half online.";
+  if (type === "some_web") return days + "offer some portions online";
   if (type === "comments") return comments + "";
   return "No specific details";
 }
 
 function generateInfoOverlay(is_lab, has_time, type) {
-  if (is_lab && !has_time && type === "lab")
-    return <div className="info-overlay">Lab Time TBA</div>;
-  if (is_lab && !has_time && type === "web")
-    return <div className="info-overlay">Section Online</div>;
+  if (is_lab && !has_time) {
+    const text = type === "lab" ? "Lab Time TBA" : "Section Online";
+    return <div className="info-overlay">{text}</div>;
+  }
 }
 
 function formatInstructor(inst) {

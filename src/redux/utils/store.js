@@ -3,14 +3,13 @@ import thunk from "redux-thunk";
 import { apiMiddleware } from "redux-api-middleware";
 
 import reducers from "./reducers";
-import DevTools from "./devtools";
+//import DevTools from "./devtools";
 
 const enhancer = compose(
-  applyMiddleware(thunk, apiMiddleware),
-  DevTools.instrument()
+  applyMiddleware(thunk, apiMiddleware)
+  //DevTools.instrument()
 );
 
 export default function configureStore(initialState = {}) {
-  const store = createStore(reducers, initialState, enhancer);
-  return store;
+  return createStore(reducers, initialState, enhancer);
 }

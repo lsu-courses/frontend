@@ -1,36 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import DebounceInput from "react-debounce-input";
 
-class SearchInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      input: ""
-    };
-  }
-
-  render() {
-    return (
-      <div className="SearchInput">
-        <DebounceInput
-          minLength={0}
-          debounceTimeout={500}
-          className="SearchInput__Input"
-          type="text"
-          placeholder="Search"
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck="false"
-          onChange={event => {
-            this.setState({ input: event.target.value });
-            this.props.performSearch(event.target.value);
-          }}
-        />
-      </div>
-    );
-  }
-}
+const SearchInput = props => {
+  return (
+    <div className="SearchInput">
+      <DebounceInput
+        minLength={0}
+        debounceTimeout={500}
+        className="SearchInput__Input"
+        type="text"
+        placeholder="Search"
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        spellCheck="false"
+        onChange={event => props.performSearch(event.target.value)}
+      />
+    </div>
+  );
+};
 
 export default SearchInput;
