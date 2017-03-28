@@ -58,6 +58,9 @@ export default function reducer(state = defaultState, action) {
         let dept_name = payload[0].abbreviation.toLowerCase();
         let new_dcache = { ...state.department_cache, [dept_name]: payload };
 
+        console.log(dept_name);
+        console.log(new_dcache);
+
         return {
           ...commonState,
           current_department: dept_name,
@@ -66,7 +69,8 @@ export default function reducer(state = defaultState, action) {
       }
 
     case FILTER_DEPARTMENT:
-      if (state.current_department === null) {
+      if (state.current_department === null && payload.change === undefined) {
+        //if (false) {
         return {
           ...state,
           current_filter: null,
@@ -79,6 +83,9 @@ export default function reducer(state = defaultState, action) {
         const selection = state.department_cache[department];
         let set = selection;
         let filter = payload.filter.toLowerCase();
+
+        console.log("selecting " + department + " from cache");
+        console.log(state.department_cache);
 
         if (filter !== "") {
           // Being NaN indicates the user is searching for course name

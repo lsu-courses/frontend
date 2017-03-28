@@ -14,6 +14,11 @@ const Instructions = () => {
 
       </div>
 
+      {/*<iframe
+        src="http://appl106.lsu.edu/reg%5Cschedrequest.nsf/(NoteID)/47826856DDC74A30862580F0007D6CFB?OpenDocument"
+        className="inner"
+      />*/}
+
       <div className="example">
         <h2>Using department name & course number</h2>
         <div className="children">
@@ -29,6 +34,8 @@ const Instructions = () => {
           <h3><span>BIOL micro</span> <img src="/search.png" /></h3>
         </div>
       </div>
+
+      <h2>Website Made by Cody Wall and Connor Elsea</h2>
 
     </div>
   );
