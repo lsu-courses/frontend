@@ -14,11 +14,6 @@ const Instructions = () => {
 
       </div>
 
-      {/*<iframe
-        src="http://appl106.lsu.edu/reg%5Cschedrequest.nsf/(NoteID)/47826856DDC74A30862580F0007D6CFB?OpenDocument"
-        className="inner"
-      />*/}
-
       <div className="example">
         <h2>Using department name & course number</h2>
         <div className="children">

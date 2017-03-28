@@ -58,9 +58,6 @@ export default function reducer(state = defaultState, action) {
         let dept_name = payload[0].abbreviation.toLowerCase();
         let new_dcache = { ...state.department_cache, [dept_name]: payload };
 
-        console.log(dept_name);
-        console.log(new_dcache);
-
         return {
           ...commonState,
           current_department: dept_name,
