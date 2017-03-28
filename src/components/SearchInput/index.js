@@ -19,9 +19,12 @@ class SearchInput extends Component {
           className="SearchInput__Input"
           type="text"
           placeholder="Search"
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           onChange={event => {
             this.setState({ input: event.target.value });
-            console.log(event.target.value);
             this.props.performSearch(event.target.value);
           }}
         />
