@@ -47,11 +47,9 @@ class SearchContainer extends Component {
         if (this.props.current_department === firstWord) {
           // The department currently in the working set is the department
           // that the user typed. Do nothing except re-filter
-          console.log("in working set");
           this.props.filterDepartment(rest);
         } else {
           if (this.props.department_cache[firstWord]) {
-            console.log("found in cache " + firstWord);
             // Department found in cache
             // REDUX: selectDepartmentFromCache
             // - set selected dep
@@ -66,8 +64,6 @@ class SearchContainer extends Component {
             // - set selected dep
             // - fill working set with dep's courses
             // - filter working set based on criteria
-
-            console.log("not found in cache");
 
             this.props.requestDepartment(firstWord).then(() => {
               this.props.filterDepartment(rest);

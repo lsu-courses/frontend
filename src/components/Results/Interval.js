@@ -143,15 +143,17 @@ function genEmblems(
   if (s_majors_only) emblems.push(getEmblem("majors_only"));
   if (s_req_dept_perm) emblems.push(getEmblem("req_dept_perm"));
   if (s_req_inst_perm) emblems.push(getEmblem("req_inst_perm"));
-  if (comments.length > 0) emblems.push(getEmblem("comments"));
+  if (comments.length > 0) emblems.push(getEmblem("comments", comments));
 
   return emblems;
 }
 
-function getEmblem(type) {
+function getEmblem(type, comments) {
   let tooltipID = type + "-tooltip";
   let imgSrc = getIconSrc(type);
-  let title = getEmblemTitle(type);
+  let title = getEmblemTitle(type, comments);
+
+  if (comments !== undefined) tooltipID = type + "-tooltip" + comments[0];
 
   return (
     <div className="emblem">
@@ -165,7 +167,7 @@ function getEmblem(type) {
         <div className="emblem__tooltip__internal">
           <img src={imgSrc} alt="emblem" />
           <div>
-            <h3>{title}</h3><p>{getEmblemText(type)}</p>
+            <h3>{title}</h3><p>{getEmblemText(type, comments)}</p>
           </div>
         </div>
       </Tooltip>
@@ -186,9 +188,14 @@ function getIconSrc(type) {
   if (type === "cmi_written") return "/written.png";
   if (type === "cmi_spoken") return "/spoken.png";
   if (type.includes("cmi")) return "/com.png";
+  if (type === "comments") return "/comments.png";
+
+  if (type === "req_dept_perm") return "/lock_alt.png";
+  if (type === "req_inst_perm") return "/lock_alt.png";
+  if (type === "majors_only") return "/lock_alt.png";
 }
 
-function getEmblemTitle(type) {
+function getEmblemTitle(type, comments) {
   if (type === "lab") return "Lab";
   if (type === "night") return "Night Course";
   if (type === "cmi") return "Com. Intensive";
@@ -199,7 +206,8 @@ function getEmblemTitle(type) {
   if (type === "majors_only") return "Majors Only";
   if (type === "req_dept_perm") return "Req. Department Perm.";
   if (type === "req_inst_perm") return "Req. Instructor Perm.";
-  if (type === "comments") return "Has Comments";
+  if (type === "comments")
+    return `${comments.length} Comment${comments.length > 1 ? "s" : ""}`;
   if (type === "all_web") return "Online";
   if (type === "most_web") return "Mostly Online";
   if (type === "half_web") return "Half Online";
@@ -207,7 +215,7 @@ function getEmblemTitle(type) {
   return "Undefined";
 }
 
-function getEmblemText(type) {
+function getEmblemText(type, comments) {
   if (type === "night") return "The day(s) above are held at night.";
   if (type === "lab") return "The day(s) above are a lab.";
   if (type === "cmi") return "The day(s) above are communication intensive.";
@@ -217,7 +225,8 @@ function getEmblemText(type) {
   if (type === "most_web") return "The day(s) above are mostly online.";
   if (type === "half_web") return "";
   if (type === "some_web") return "";
-  return "Undefined";
+  if (type === "comments") return comments + "";
+  return "No specific details";
 }
 
 function generateInfoOverlay(is_lab, has_time, type) {

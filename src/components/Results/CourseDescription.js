@@ -6,6 +6,7 @@ const replaceAll = (target, search, replacement) => {
 };
 
 const processComments = comments => {
+  if (comments[0] === "") return "Comment was found to be blank.";
   let newComment = Case.sentence(comments.join(" ").toLowerCase());
   let replacements = [
     ["tba", "TBA"],
