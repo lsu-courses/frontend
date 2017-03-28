@@ -1,20 +1,54 @@
 .Instructions
-  text-align: center
-  border: 1px solid gray
+  border-radius: 10px
   max-width: 40rem
   margin: auto
-  padding: 1rem
-  color: gray
+  padding: 30px
+
+  color: black
+  background-color: white
+
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.1)
+
+  @media (max-width: 750px)
+    margin: 0 17px
+    padding: 20px
+    margin-top: 0
+
+  .example
+
+    h2
+      font-size: 0.95rem
+
+    h3
+      border: 1px lighten(gray, 30) solid
+      margin: 14px 0
+      margin-right: 14px
+      display: inline-block
+      //box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0)
+      padding: 15px
+      font-size: 1.8rem
+      background-color: white
+      border-radius: 10px
+      font-weight: 200
+      color: black
+
+      @media (max-width: 750px)
+        font-size: 1rem
+        padding: 8px
+        margin-right: 10px
+
+      img
+        $size: 30px
+        width: $size
+        height: $size
+
+        @media (max-width: 750px)
+          $size: 17px
+          width: $size
+          height: $size
 
   h1
     font-size: 2rem
-    font-weight: 100
-    margin-bottom: 2rem
-
-  h2
-    font-size: 1.4rem
-    margin-bottom: .5rem
-
-  h3
-    font-style: italic
+    font-weight: 600
     margin-bottom: 2rem

@@ -1,15 +1,37 @@
-import React from "react"
+import React from "react";
 
 const Instructions = () => {
   return (
     <div className="Instructions">
-      <h1>You can search for courses like this:</h1>
-      <h2>Using department name:</h2>
-      <h3>biol</h3>
-      <h2>Using department name + course number:</h2>
-      <h3>biol 1202</h3>
-    </div>
-  )
-}
+      <h1>Instructions</h1>
 
-export default Instructions
+      <div className="example">
+        <h2>Using department name</h2>
+        <div className="children">
+          <h3><span>BIOL</span> <img src="/search.png" /></h3>
+          <h3><span>MATH</span> <img src="/search.png" /></h3>
+        </div>
+
+      </div>
+
+      <div className="example">
+        <h2>Using department name & course number</h2>
+        <div className="children">
+          <h3><span>HNRS 2030</span> <img src="/search.png" /></h3>
+          <h3><span>BIOL 1002</span> <img src="/search.png" /></h3>
+        </div>
+      </div>
+
+      <div className="example">
+        <h2>Using department name & course name</h2>
+        <div className="children">
+          <h3><span>MATH algebra</span> <img src="/search.png" /></h3>
+          <h3><span>BIOL micro</span> <img src="/search.png" /></h3>
+        </div>
+      </div>
+
+    </div>
+  );
+};
+
+export default Instructions;
