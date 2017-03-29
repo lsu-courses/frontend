@@ -222,28 +222,16 @@ module.exports = {
       compress: {
         screw_ie8: true, // React doesn't support IE8
         warnings: false,
-        unsafe: true,
-        unsafe_comps: true,
         unused: true,
-        dead_code: true,
-        drop_debugger: true,
-        reduce_vars: true,
-        collapse_vars: true,
-        conditionals: true,
-        drop_console: true,
-        sequences: true,
-        booleans: true,
-        passes: 2
+        drop_console: true
       },
       mangle: {
-        screw_ie8: true,
-        props: true
+        screw_ie8: true
       },
       output: {
         comments: false,
         screw_ie8: true
-      },
-      sourceMap: false
+      }
     }),
 
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
