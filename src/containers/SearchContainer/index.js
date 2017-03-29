@@ -29,7 +29,7 @@ class SearchContainer extends Component {
 
     const { text, searchInputArray, rest } = this._processInput(input);
 
-    if (input.length < 3) {
+    if (input.length < 2) {
       return this.props.clearDepartment();
     }
 

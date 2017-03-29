@@ -30,6 +30,8 @@ const defaultState = {
 export default function reducer(state = defaultState, action) {
   const { type, payload } = action;
 
+  console.log(action);
+
   switch (type) {
     case SET_SEARCH:
       return { ...state, search_input: payload.input };
@@ -85,10 +87,39 @@ export default function reducer(state = defaultState, action) {
           if (isNaN(filter)) {
             // Return all courses whose titles includes filter
 
-            set = set.filter(s => {
-              return s.sections.filter(sec =>
-                sec.title.toLowerCase().includes(filter)).length > 0;
-            });
+            let filtered_set = [];
+
+            for (let i = 0; i < set.length; i++) {
+              let item = set[i];
+              let sections = item.sections;
+              let newSections = [];
+
+              for (let k = 0; k < sections.length; k++) {
+                let sec = sections[k];
+
+                let title = sec.title ? sec.title.toLowerCase() : "";
+                let full_title = item.full_title
+                  ? item.full_title.toLowerCase()
+                  : "";
+
+                if (title.includes(filter) || full_title.includes(filter)) {
+                  newSections.push(sec);
+                }
+              }
+
+              if (newSections.length > 0)
+                filtered_set.push({ ...item, sections: newSections });
+              //for (let k = 0; l < item.)
+            }
+
+            set = filtered_set;
+
+            // set = set.filter(s => {
+            //   return s.sections.filter(sec => {
+            //     console.log(sec);
+            //     return sec.title.toLowerCase().includes(filter).length > 0;
+            //   });
+            // });
           } else {
             // REturn all courses whose number includes filter
             let filtered_set = [];
