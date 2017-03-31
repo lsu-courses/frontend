@@ -5,6 +5,9 @@ import Loading from "components/Results/Loading";
 import EmptyState from "components/Results/EmptyState";
 import Instructions from "components/Instructions";
 
+import CalendarContainer from "containers/CalendarContainer";
+import WeekView from "components/WeekView";
+
 class ResultsContainer extends Component {
   _renderResults() {
     if (this.props.current_set.length > 0) {

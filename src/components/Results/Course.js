@@ -12,6 +12,7 @@ const haveSameName = sections => {
 
 const Course = (
   {
+    course,
     course: {
       abbreviation,
       number,
@@ -45,7 +46,13 @@ const Course = (
 
     <div className="Course__sections">
       {sections.map((sec, i) => (
-        <Section key={i} haveSameName={haveSameName(sections)} {...sec} />
+        <Section
+          key={i}
+          haveSameName={haveSameName(sections)}
+          course={course} // eslint-disable-line
+          section={sec}
+          {...sec}
+        />
       ))}
     </div>
 
