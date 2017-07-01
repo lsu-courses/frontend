@@ -1,7 +1,7 @@
 import React from "react"
 
 const WelcomeCard = props =>
-  <div className="Card Card--padding">
+  <div className="Card Card--padding animated fadeInUp">
     <h2>Welcome</h2>
     <h1 className="Card__title">LSU Courses</h1>
     <p>

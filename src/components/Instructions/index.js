@@ -13,7 +13,7 @@ const examples = [
 ]
 
 const Instructions = props =>
-  <div className="Card Card--padding">
+  <div className="Card Card--padding animated fadeInUp">
     <h2>How to search</h2>
     <h1 className="Card__title">Instructions</h1>
 
