@@ -1,43 +1,36 @@
-import React from "react";
+import React from "react"
 
-const Instructions = () => {
-  return (
-    <div className="Instructions">
-      <h1>Instructions</h1>
+const examples = [
+  { title: "By department name", searches: ["BIOL", "MATH"] },
+  {
+    title: "By department name & course number",
+    searches: ["HNRS 2030", "BIOL 1002"],
+  },
+  {
+    title: "By department name & course name",
+    searches: ["MATH Algebra", "BIOL micro"],
+  },
+]
 
-      <div className="example">
-        <h2>Using department name</h2>
-        <div className="children">
-          <h3><span>BIOL</span> <img src="/search.png" alt="search" /></h3>
-          <h3><span>MATH</span> <img src="/search.png" alt="search" /></h3>
-        </div>
+const Instructions = props =>
+  <div className="Card Card--padding">
+    <h2>How to search</h2>
+    <h1 className="Card__title">Instructions</h1>
 
-      </div>
-
-      <div className="example">
-        <h2>Using department name & course number</h2>
-        <div className="children">
-          <h3><span>HNRS 2030</span> <img src="/search.png" alt="search" /></h3>
-          <h3><span>BIOL 1002</span> <img src="/search.png" alt="search" /></h3>
-        </div>
-      </div>
-
-      <div className="example">
-        <h2>Using department name & course name</h2>
-        <div className="children">
-          <h3>
-            <span>MATH algebra</span> <img src="/search.png" alt="search" />
-          </h3>
-          <h3>
-            <span>BIOL micro</span> <img src="/search.png" alt="search" />
-          </h3>
+    {examples.map((example, ii) =>
+      <div className="Example" key={ii}>
+        <h2>
+          {example.title}
+        </h2>
+        <div className="Example__searches">
+          {example.searches.map((search, i) =>
+            <div key={i}>
+              {search} <img src="/search.png" alt="search" />
+            </div>
+          )}
         </div>
       </div>
+    )}
+  </div>
 
-      <h2>Website Made by Cody Wall and Connor Elsea</h2>
-
-    </div>
-  );
-};
-
-export default Instructions;
+export default Instructions

@@ -8,7 +8,6 @@
   &__loading
     text-align: center
     height: 10rem
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif
 
     h1
       padding-top: 2rem
@@ -33,12 +32,10 @@
     @keyframes load
       0%
         transform: rotate(0deg)
-
       100%
         transform: rotate(360deg)
 
   &__empty-state
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif
     text-align: center
     height: 10rem
     margin-bottom: 2rem
@@ -48,20 +45,7 @@
       font-size: 2rem
       color: gray
 
-
 .Course
-  max-width: 750px
-  margin: 0 auto
-  margin-top: 30px
-  overflow: auto
-  background-color: white
-  padding: 30px 0px
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 10px 10px rgba(0, 0, 0, 0)
-
-  @media (max-width: 750px)
-    margin: 17px
-
   .anchor
     display: block
     position: relative
@@ -101,13 +85,13 @@
 
       @media (max-width: 750px)
         > h1
-          font-size: 2.5rem
+          font-size: 2.7rem
+          margin-bottom: 4px
 
         > h2
           font-size: 1.2rem
 
     &__info
-
       > p
         font-size: 1.6rem
         text-transform: uppercase
@@ -116,7 +100,8 @@
           color: white
           background: linear-gradient(133deg, #484848, #191919);
           border-radius: 8px
-          padding: 5px 10px
+          padding: 6px 12px
+          margin-right: 5px
           font-weight: 200
 
       @media (max-width: 750px)
@@ -139,13 +124,10 @@
 
 .CourseDescription
   margin-top: 0px
-  padding-top: 10px
-  padding-left: 30px
-  padding-right: 30px
+  padding: 0px 30px
 
   @media (max-width: 750px)
-    padding-left: 20px
-    padding-right: 20px
+    padding: 0px 20px
 
   &__comments
     margin-top: 20px
@@ -168,7 +150,6 @@
 .Section
   margin-top: 20px
   display: flex
-  flex-direction: row
 
   &__content
     flex-grow: 1
@@ -180,22 +161,17 @@
 
   &__container
     display: flex
-    flex-direction: row
     width: 100%
-    padding: 0px
-    padding-right: 30px
-    padding-left: 30px
+    padding: 0px 30px
     justify-content: space-between
 
     @media (max-width: 750px)
-      padding-left: 0px
-      padding-right: 0px
+      padding: 0px 0px
       flex-direction: column
 
   &:nth-child(odd)
     background-color: lighten(gray, 47)
-    padding-bottom: 20px
-    padding-top: 20px
+    padding: 20px 0
     border-bottom: 1px solid lighten(gray, 37)
     border-top: 1px solid lighten(gray, 37)
 
@@ -461,10 +437,8 @@
   background-color: lighten(gray, 37)
   border-radius: 10px
   display: flex
-  flex-direction: row
   justify-content: space-around
   position: relative
-  background-color: lighten(gray, 37)
 
   .info-overlay
     position: absolute
@@ -481,7 +455,6 @@
     display: flex
     align-items: center
     justify-content: center
-    //border-radius: 8px
 
   &__date
     width: 36px

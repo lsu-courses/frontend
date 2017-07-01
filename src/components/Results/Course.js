@@ -1,55 +1,57 @@
-import React from "react";
-import CourseDescription from "components/Results/CourseDescription";
-import Section from "components/Results/Section";
+import React from "react"
+import CourseDescription from "components/Results/CourseDescription"
+import Section from "components/Results/Section"
 
 const haveSameName = sections => {
-  const name = sections[0].title;
+  const name = sections[0].title
   sections.forEach(sec => {
-    if (sec.title !== name) return false;
-  });
-  return true;
-};
+    if (sec.title !== name) return false
+  })
+  return true
+}
 
-const Course = (
-  {
-    course: {
-      abbreviation,
-      number,
-      hours,
-      full_title,
-      description,
-      comments,
-      sections
-    }
-  }
-) => (
-  <div className="Course animated fadeInUp">
+const Course = ({
+  course: {
+    abbreviation,
+    number,
+    hours,
+    full_title,
+    description,
+    comments,
+    sections,
+  },
+}) =>
+  <div className="Course Card animated fadeInUp">
     <span className="anchor" id={`${number}`} />
 
     <div className="Course__heading">
       <div className="Course__heading__name">
-        <h1><span>{abbreviation}</span> {number}</h1>
-        {full_title ? <h2>{full_title}</h2> : undefined}
+        <h1>
+          <span>{abbreviation}</span> {number}
+        </h1>
+        {full_title &&
+          <h2>
+            {full_title}
+          </h2>}
       </div>
 
       <div className="Course__heading__info">
-        <p><span>{hours}</span> Credit Hours</p>
+        <p>
+          <span>{hours}</span> Credit Hours
+        </p>
       </div>
     </div>
 
-    {description
-      ? <CourseDescription description={description} comments={comments} />
-      : undefined}
+    {description &&
+      <CourseDescription description={description} comments={comments} />}
 
     <h2 className="Course__header">Sections</h2>
 
     <div className="Course__sections">
-      {sections.map((sec, i) => (
+      {sections.map((sec, i) =>
         <Section key={i} haveSameName={haveSameName(sections)} {...sec} />
-      ))}
+      )}
     </div>
-
   </div>
-);
 
-export default Course;
+export default Course

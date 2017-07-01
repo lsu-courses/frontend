@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux"
 
 import search from "redux/ducks/search"
 

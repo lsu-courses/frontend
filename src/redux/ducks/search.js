@@ -1,17 +1,17 @@
-import createAPIAction from "utils/redux-api";
+import createAPIAction from "utils/redux-api"
 
 // Action Types
 
-export const PERFORM_SEARCH = "PERFORM_SEARCH";
-export const PERFORM_SEARCH_SUCCESS = "PERFORM_SEARCH_SUCCESS";
+export const PERFORM_SEARCH = "PERFORM_SEARCH"
+export const PERFORM_SEARCH_SUCCESS = "PERFORM_SEARCH_SUCCESS"
 
-export const REQUEST_DEPARTMENT = "REQUEST_DEPARTMENT";
-export const REQUEST_DEPARTMENT_REQUEST = `${REQUEST_DEPARTMENT}_REQUEST`;
-export const REQUEST_DEPARTMENT_SUCCESS = `${REQUEST_DEPARTMENT}_SUCCESS`;
+export const REQUEST_DEPARTMENT = "REQUEST_DEPARTMENT"
+export const REQUEST_DEPARTMENT_REQUEST = `${REQUEST_DEPARTMENT}_REQUEST`
+export const REQUEST_DEPARTMENT_SUCCESS = `${REQUEST_DEPARTMENT}_SUCCESS`
 
-export const FILTER_DEPARTMENT = "FILTER_DEPARTMENT";
-export const CLEAR_DEPARTMENT = "CLEAR_DEPARTMENT";
-export const SET_SEARCH = "SET_SEARCH";
+export const FILTER_DEPARTMENT = "FILTER_DEPARTMENT"
+export const CLEAR_DEPARTMENT = "CLEAR_DEPARTMENT"
+export const SET_SEARCH = "SET_SEARCH"
 
 // Default State
 
@@ -22,49 +22,49 @@ const defaultState = {
   current_set: [],
   current_department: "",
   current_filter: "",
-  has_search: false
-};
+  has_search: false,
+}
 
 // Reducer
 
 export default function reducer(state = defaultState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
 
-  console.log(action);
+  console.log(action)
 
   switch (type) {
     case SET_SEARCH:
-      return { ...state, search_input: payload.input };
+      return { ...state, search_input: payload.input }
 
     case PERFORM_SEARCH_SUCCESS:
       return {
-        results: payload
-      };
+        results: payload,
+      }
 
     case CLEAR_DEPARTMENT:
-      return { ...state, has_search: false };
+      return { ...state, has_search: false }
 
     case REQUEST_DEPARTMENT_REQUEST:
-      return { ...state, current_loading: true };
+      return { ...state, current_loading: true }
 
     case REQUEST_DEPARTMENT_SUCCESS:
-      let commonState = { ...state, has_search: true };
+      let commonState = { ...state, has_search: true }
 
       if (payload.length === 0) {
         return {
           ...commonState,
           current_loading: false,
-          current_department: null
-        };
+          current_department: null,
+        }
       } else {
-        let dept_name = payload[0].abbreviation.toLowerCase();
-        let new_dcache = { ...state.department_cache, [dept_name]: payload };
+        let dept_name = payload[0].abbreviation.toLowerCase()
+        let new_dcache = { ...state.department_cache, [dept_name]: payload }
 
         return {
           ...commonState,
           current_department: dept_name,
-          department_cache: new_dcache
-        };
+          department_cache: new_dcache,
+        }
       }
 
     case FILTER_DEPARTMENT:
@@ -72,47 +72,47 @@ export default function reducer(state = defaultState, action) {
         return {
           ...state,
           current_filter: null,
-          current_set: []
-        };
+          current_set: [],
+        }
       } else {
         // If the action has a change attrib, then change the current
         // department being filtered.
-        const department = payload.change || state.current_department;
-        const selection = state.department_cache[department];
-        let set = selection;
-        let filter = payload.filter.toLowerCase();
+        const department = payload.change || state.current_department
+        const selection = state.department_cache[department]
+        let set = selection
+        let filter = payload.filter.toLowerCase()
 
         if (filter !== "") {
           // Being NaN indicates the user is searching for course name
           if (isNaN(filter)) {
             // Return all courses whose titles includes filter
 
-            let filtered_set = [];
+            let filtered_set = []
 
             for (let i = 0; i < set.length; i++) {
-              let item = set[i];
-              let sections = item.sections;
-              let newSections = [];
+              let item = set[i]
+              let sections = item.sections
+              let newSections = []
 
               for (let k = 0; k < sections.length; k++) {
-                let sec = sections[k];
+                let sec = sections[k]
 
-                let title = sec.title ? sec.title.toLowerCase() : "";
+                let title = sec.title ? sec.title.toLowerCase() : ""
                 let full_title = item.full_title
                   ? item.full_title.toLowerCase()
-                  : "";
+                  : ""
 
                 if (title.includes(filter) || full_title.includes(filter)) {
-                  newSections.push(sec);
+                  newSections.push(sec)
                 }
               }
 
               if (newSections.length > 0)
-                filtered_set.push({ ...item, sections: newSections });
+                filtered_set.push({ ...item, sections: newSections })
               //for (let k = 0; l < item.)
             }
 
-            set = filtered_set;
+            set = filtered_set
 
             // set = set.filter(s => {
             //   return s.sections.filter(sec => {
@@ -122,15 +122,15 @@ export default function reducer(state = defaultState, action) {
             // });
           } else {
             // REturn all courses whose number includes filter
-            let filtered_set = [];
+            let filtered_set = []
 
             for (let i = 0; i < set.length; i++) {
-              let item = set[i];
-              if (item.number === filter) filtered_set.push(item);
-              else if (item.number.includes(filter)) filtered_set.push(item);
+              let item = set[i]
+              if (item.number === filter) filtered_set.push(item)
+              else if (item.number.includes(filter)) filtered_set.push(item)
             }
 
-            set = filtered_set;
+            set = filtered_set
           }
         }
 
@@ -139,37 +139,37 @@ export default function reducer(state = defaultState, action) {
           current_department: department,
           current_loading: false,
           current_filter: filter,
-          current_set: set
-        };
+          current_set: set,
+        }
       }
 
     default:
-      return state;
+      return state
   }
 }
 
 // Action Creators
 
 export const clearDepartment = () => ({
-  type: CLEAR_DEPARTMENT
-});
+  type: CLEAR_DEPARTMENT,
+})
 
 export const filterDepartment = (filter, change) => ({
   type: FILTER_DEPARTMENT,
-  payload: { filter, change }
-});
+  payload: { filter, change },
+})
 
 export const setGlobalSearch = input => ({
   type: SET_SEARCH,
-  payload: { input }
-});
+  payload: { input },
+})
 
-let url = process.env.REACT_APP_API_URL || "http://localhost:8080";
+let url = process.env.REACT_APP_API_URL || "http://localhost:8080"
 
 export const requestDepartment = dept =>
   createAPIAction({
     name: REQUEST_DEPARTMENT,
     endpoint: url + "/department",
     method: "GET",
-    query: { dept }
-  });
+    query: { dept },
+  })
