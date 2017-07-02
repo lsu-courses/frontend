@@ -24,3 +24,21 @@ body
   > div
     > *
       display: inline
+
+// hacked in animated.css library
+
+.animated
+  animation-duration: 1s
+  animation-fill-mode: both
+
+@keyframes fadeInUp
+  from
+    opacity: 0;
+    transform: translate3d(0, 100%, 0)
+
+  to
+    opacity: 1
+    transform: none
+
+.fadeInUp
+  animation-name: fadeInUp
