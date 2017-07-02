@@ -1,6 +1,5 @@
 import React from "react"
 import Case from "case"
-import Tooltip from "react-tooltip"
 
 function generateClass(day, days) {
   if (days.includes(day)) return `Dates__date Dates__date--selected`
@@ -131,15 +130,12 @@ function genEmblems(obj) {
 }
 
 function getEmblem(type, comments) {
-  let tooltipID = `${type}-tooltip-${Math.floor(Math.random() * 50)}`
   let imgSrc = getIconSrc(type)
   let title = getEmblemTitle(type, comments)
 
-  if (comments) tooltipID += Math.floor(Math.random() * 50)
-
   return (
     <div className="emblem">
-      <Tooltip
+      {/*<Tooltip
         className="eblem__tooltip"
         id={tooltipID}
         data-id={tooltipID}
@@ -157,9 +153,10 @@ function getEmblem(type, comments) {
             </p>
           </div>
         </div>
-      </Tooltip>
+      </Tooltip>*/}
+      {console.log(comments)}
 
-      <div className="emblem__container" data-tip data-for={tooltipID}>
+      <div className="emblem__container">
         <img src={imgSrc} alt="emblem" />
         <h3>
           {title}

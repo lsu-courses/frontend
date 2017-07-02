@@ -114,11 +114,6 @@ class SearchContainer extends Component {
         <div className="SearchContainer__tools">
           Tools and tool buttons will go here
         </div>
-
-        {/*<div>Has Search: {this.props.has_search ? "Yes" : "No"}</div>*/}
-        {/*this.props.current_loading
-          ? <div>Loading</div>
-          : <pre>{JSON.stringify(this.props.current_set, null, 2)}</pre>*/}
       </div>
     )
   }
