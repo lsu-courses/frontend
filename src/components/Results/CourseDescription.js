@@ -1,5 +1,4 @@
 import React from "react"
-import Case from "case"
 
 const replaceAll = (target, search, replacement) => {
   return target.replace(new RegExp(search, "g"), replacement)
@@ -7,7 +6,7 @@ const replaceAll = (target, search, replacement) => {
 
 const processComments = comments => {
   if (comments[0] === "") return "Comment was found to be blank."
-  let newComment = Case.sentence(comments.join(" ").toLowerCase())
+  let newComment = comments.join(" ")
   let replacements = [
     ["tba", "TBA"],
     ["Lec", "Lecture"],

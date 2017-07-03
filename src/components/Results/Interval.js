@@ -1,5 +1,4 @@
 import React from "react"
-import Case from "case"
 
 function generateClass(day, days) {
   if (days.includes(day)) return `Dates__date Dates__date--selected`
@@ -77,7 +76,10 @@ const Interval = ({
                   {location_room + " "}
                 </span>
                 <span className="building">
-                  {Case.capital(location_building)}
+                  {location_building
+                    .split(" ")
+                    .map(section => capitalize(section))
+                    .join(" ")}
                 </span>
               </div>
             : <div className="Interval__info__location tba">Location TBA</div>}
@@ -154,8 +156,6 @@ function getEmblem(type, comments) {
           </div>
         </div>
       </Tooltip>*/}
-      {console.log(comments)}
-
       <div className="emblem__container">
         <img src={imgSrc} alt="emblem" />
         <h3>
@@ -232,8 +232,14 @@ function generateInfoOverlay(is_lab, has_time, type) {
   )
 }
 
+function capitalize(str) {
+  return `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`
+}
+
 function formatInstructor(inst) {
-  return inst.name ? Case.capital(inst.name).split(" ").join(", ") + "." : ""
+  return inst.name
+    ? inst.name.split(" ").map(part => capitalize(part)).join(", ") + "."
+    : ""
 }
 
 function formatTime(time) {

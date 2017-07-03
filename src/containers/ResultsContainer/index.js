@@ -5,6 +5,7 @@ import Loading from "components/Results/Loading"
 import EmptyState from "components/Results/EmptyState"
 import Instructions from "components/Instructions"
 import WelcomeCard from "components/WelcomeCard"
+import HelpCard from "components/HelpCard"
 
 class ResultsContainer extends Component {
   _renderResults() {
@@ -19,6 +20,7 @@ class ResultsContainer extends Component {
       <div className="Card-Container">
         <WelcomeCard />
         <Instructions />
+        <HelpCard />
       </div>
     )
   }

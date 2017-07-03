@@ -109,7 +109,7 @@ class SearchContainer extends Component {
           <SearchInput performSearch={this._performSearch.bind(this)} />
         </div>
 
-        {this.props.current_set.length > 0 ? this._renderBottomBar() : null}
+        {this.props.current_set.length > 0 && this._renderBottomBar()}
 
         <div className="SearchContainer__tools">
           Tools and tool buttons will go here

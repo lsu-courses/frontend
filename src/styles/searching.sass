@@ -11,13 +11,23 @@
   backdrop-filter: blur(4px)
   background-color: transparentize(white, 0.08)
   margin-bottom: 30px
-  box-shadow: 0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.02)
+  box-shadow:  0px 29px 50px -8px rgba(0,0,0,0.10)
   position: fixed
   left: 0px
   top: 0px
+  border-radius: 8px
   z-index: 1000
   width: 100%
   transition: all 0.4s
+  overflow: hidden
+
+  // @media(min-width: 750px)
+  //   width: 750px
+  //   left: 0
+  //   right: 0
+  //   top: 20px
+  //   margin-left: auto
+  //   margin-right: auto
 
   input
     background: none
@@ -56,7 +66,7 @@
     justify-content: center
 
     @media (max-width: 750px)
-      height: 60px
+      height: 50px
 
     &__jump
       display: flex
@@ -70,11 +80,12 @@
         min-width: 120px
         font-style: italic
         color: gray
-        padding: 0px 20px
+        padding: 0 20px
 
         @media (max-width: 750px)
-          font-size: 0.9rem
-          min-width: 100px
+          font-size: 0.85rem
+          min-width: 85px
+          padding: 0 15px
 
       > a
         min-width: 115px
@@ -88,6 +99,12 @@
         box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)
         transition: all 0.2s
 
+        @media (max-width: 750px)
+          font-size: 0.83rem
+          padding: 8px 0
+          min-width: 85px
+          margin: 4px
+
         &:hover
           box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
@@ -100,7 +117,6 @@
 .SearchInput
 
   &__Input
-    width: 100%
     padding: 28px 40px
     font-size: 2em
     font-weight: 200
