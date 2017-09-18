@@ -1,6 +1,6 @@
 {
-  "name": "frontend-new",
-  "version": "0.1.0",
+  "name": "lsu-courses-frontend",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.7.2",
@@ -55,6 +55,9 @@
   "dependencies": {
     "preact": "^8.1.0",
     "preact-compat": "^3.16.0",
+    "case": "^1.5.0",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.9.1",
     "querystring": "^0.2.0",
     "react": "^15.6.1",
     "react-debounce-input": "^2.4.2",
@@ -73,12 +76,8 @@
     "heroku-prebuild": ""
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -89,17 +88,13 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
   },
   "eslintConfig": {
     "extends": "react-app"

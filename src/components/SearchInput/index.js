@@ -1,7 +1,7 @@
 import React from "react"
 import DebounceInput from "react-debounce-input"
 
-const SearchInput = ({ performSearch }) =>
+const SearchInput = ({ performSearch }) => (
   <div className="SearchInput">
     <DebounceInput
       minLength={0}
@@ -16,5 +16,6 @@ const SearchInput = ({ performSearch }) =>
       onChange={event => performSearch(event.target.value)}
     />
   </div>
+)
 
 export default SearchInput

@@ -1,46 +1,40 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import Course from "components/Results/Course"
+import React from "react"
 import Loading from "components/Results/Loading"
+import Course from "components/Results/Course"
 import EmptyState from "components/Results/EmptyState"
 import Instructions from "components/Instructions"
-import WelcomeCard from "components/WelcomeCard"
-import HelpCard from "components/HelpCard"
+import glamorous from "glamorous"
+import style from "utils/style"
 
-class ResultsContainer extends Component {
-  _renderResults() {
-    if (this.props.current_set.length > 0) {
-      return this.props.current_set.map((course, i) =>
-        <Course course={course} key={i} />
-      )
-    } else if (this.props.has_search) {
-      return <EmptyState search={this.props.search_input} />
+export default class ResultsContainer extends React.Component {
+  renderResults() {
+    const { currentSearch, currentResults, loading, performSearch } = this.props
+
+    if (currentResults && currentResults.length > 0) {
+      return currentResults.map((course, i) => (
+        <Course course={course} key={i + course.abbreviation + course.number} />
+      ))
+    } else if (currentSearch && currentSearch.length > 0 && !loading) {
+      return <EmptyState search={currentSearch} />
+    } else {
+      return <Instructions performSearch={performSearch} />
     }
-    return (
-      <div className="Card-Container">
-        <WelcomeCard />
-        <Instructions />
-        <HelpCard />
-      </div>
-    )
   }
 
   render() {
     return (
-      <div className="ResultsContainer">
-        {this.props.current_loading ? <Loading /> : this._renderResults()}
-      </div>
+      <Container>
+        {this.props.loading && <Loading />}
+        {this.renderResults()}
+      </Container>
     )
   }
 }
 
-const mapStateToProps = function(state) {
-  return {
-    current_set: state.search.current_set,
-    current_loading: state.search.current_loading,
-    has_search: state.search.has_search,
-    search_input: state.search.search_input,
-  }
-}
-
-export default connect(mapStateToProps)(ResultsContainer)
+const Container = glamorous.div({
+  paddingTop: "12rem",
+  paddingBottom: "5rem",
+  [style.sizes.mobile]: {
+    paddingTop: "7rem",
+  },
+})
