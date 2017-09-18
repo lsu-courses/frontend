@@ -1,16 +1,16 @@
 import React from "react"
-import Instructions from "../Instructions"
+import glamorous from "glamorous"
+import style from "utils/style"
 
-const EmptyState = ({ search }) =>
-  <div>
-    <div className="ResultsContainer__empty-state">
-      <h1>
-        No results for "{search}"
-      </h1>
+const EmptyState = ({ search }) => (
+  <Container>Searching for "{search}" didn't return anything.</Container>
+)
 
-      <h2>Use exact department abbreviation, such as "MUS" or "BIOL"</h2>
-    </div>
-    <Instructions />
-  </div>
+export default EmptyState
 
-module.exports = EmptyState
+const Container = glamorous.div({
+  padding: "2rem",
+  fontSize: "1.2rem",
+  textAlign: "center",
+  color: style.colors.almostBlack,
+})

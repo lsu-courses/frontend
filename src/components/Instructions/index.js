@@ -1,4 +1,5 @@
 import React from "react"
+import SearchIcon from "./search-icon"
 import glamorous from "glamorous"
 import style from "utils/style"
 
@@ -9,7 +10,7 @@ export default class Instructions extends React.Component {
     return (
       <Example onClick={() => performSearch(text)}>
         <ExampleText>{text}</ExampleText>
-        <SearchIcon src="/search.png" alt="search" />
+        <SearchIconStyled src="/search.png" alt="search" />
       </Example>
     )
   }
@@ -47,7 +48,7 @@ export default class Instructions extends React.Component {
 }
 
 const Container = glamorous.div({
-  borderRadius: 10,
+  borderRadius: 4,
   maxWidth: "40rem",
   margin: "auto",
   padding: "2rem",
@@ -96,6 +97,7 @@ const Example = glamorous.div({
   flexDirection: "row",
   marginRight: 10,
   padding: 10,
+  alignItems: "center",
 })
 
 const ExampleText = glamorous.div({
@@ -105,8 +107,6 @@ const ExampleText = glamorous.div({
   marginRight: 10,
 })
 
-const SearchIcon = glamorous.img({
+const SearchIconStyled = glamorous(SearchIcon)({
   color: style.colors.defaultGray,
-  height: 16,
-  width: 16,
 })
