@@ -1,6 +1,7 @@
 import React from "react"
 import SearchIcon from "./search-icon"
 import glamorous from "glamorous"
+import { css } from "glamor"
 import style from "utils/style"
 
 export default class Instructions extends React.Component {
@@ -10,7 +11,11 @@ export default class Instructions extends React.Component {
     return (
       <Example onClick={() => performSearch(text)}>
         <ExampleText>{text}</ExampleText>
-        <SearchIconStyled src="/search.png" alt="search" />
+        <SearchIconStyled
+          src="/search.png"
+          alt="search"
+          color={style.colors.almostBlack}
+        />
       </Example>
     )
   }
@@ -19,6 +24,7 @@ export default class Instructions extends React.Component {
     return (
       <Container>
         <Title>How to search</Title>
+        <InstructionsTitle>Instructions</InstructionsTitle>
 
         <ExampleDescription>department name</ExampleDescription>
         <ExampleContainer>
@@ -39,8 +45,11 @@ export default class Instructions extends React.Component {
         </ExampleContainer>
 
         <Credits>
-          App made by <a href="https://cmwall.io">Cody Wall</a> and{" "}
-          <a href="https://elsealabs.com">Connor Elsea</a>
+          made by <CreditsLink href="https://cmwall.io">
+            Cody Wall
+          </CreditsLink>{" "}
+          and{" "}
+          <CreditsLink href="https://elsealabs.com">Connor Elsea</CreditsLink>
         </Credits>
       </Container>
     )
@@ -52,10 +61,24 @@ const Container = glamorous.div({
   maxWidth: "40rem",
   margin: "auto",
   padding: "2rem",
-  color: style.colors.almostBlack,
+  color: style.colors.darkSlate,
   backgroundColor: "white",
   fontFamily: `-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif`,
   boxShadow: `0 19px 38px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.1)`,
+  textAlign: "center",
+  animation: `${css.keyframes({
+    "0%": {
+      transform: "translate3d(0, 50%, 0)",
+      filter: "blur(5px)",
+    },
+    "65%": {
+      transform: "translate3d(0, -3%, 0)",
+    },
+    "100%": {
+      transform: "none",
+      filter: "none",
+    },
+  })} 0.6s linear`,
   [style.sizes.mobile]: {
     margin: "0 17px",
     padding: "2rem",
@@ -64,18 +87,27 @@ const Container = glamorous.div({
 })
 
 const Title = glamorous.div({
-  marginBottom: "2rem",
-  color: style.colors.almostBlack,
-  fontSize: "1.9rem",
-  textAlign: "center",
+  color: "gray",
   textTransform: "uppercase",
+  fontWeight: 500,
+  letterSpacing: 1,
+  fontSize: "0.8rem",
+  marginBottom: 5,
+})
+
+const InstructionsTitle = glamorous.div({
+  fontSize: "2.7rem",
+  fontWeight: 700,
+  marginBottom: "3rem",
+  [style.sizes.mobile]: {
+    fontSize: "2rem",
+  },
 })
 
 const ExampleDescription = glamorous.div({
   fontSize: "1.2rem",
   fontWeight: "300",
   margin: "1rem 0",
-  textAlign: "center",
 })
 
 const ExampleContainer = glamorous.div({
@@ -86,12 +118,19 @@ const ExampleContainer = glamorous.div({
 })
 
 const Credits = glamorous.div({
-  textAlign: "center",
-  marginTop: 40,
+  marginTop: "4rem",
+})
+
+const CreditsLink = glamorous.a({
+  textDecoration: "none",
+  color: style.colors.lightPurple,
+  fontWeight: "bold",
+  "&:hover": {
+    textShadow: "1px 0px 0px rgba(150, 150, 150, 1)",
+  },
 })
 
 const Example = glamorous.div({
-  backgroundColor: style.colors.lightPurple,
   borderRadius: 5,
   display: "flex",
   flexDirection: "row",
@@ -99,21 +138,21 @@ const Example = glamorous.div({
   padding: 10,
   alignItems: "center",
   cursor: "pointer",
+  position: "relative",
+  boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)",
   "&:hover": {
-    boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
-    [style.sizes.mobile]: {
-      boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)",
-    },
+    top: -1,
+    boxShadow: "0 2px 4px rgba(0,0,0,0.16), 0 2px 3px rgba(0,0,0,0.23)",
   },
 })
 
 const ExampleText = glamorous.div({
-  color: style.colors.defaultGray,
+  color: style.colors.almostBlack,
   fontSize: 16,
   fontWeight: "500",
   marginRight: 10,
 })
 
 const SearchIconStyled = glamorous(SearchIcon)({
-  color: style.colors.defaultGray,
+  color: style.colors.almostBlack,
 })
