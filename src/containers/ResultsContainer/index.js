@@ -32,7 +32,7 @@ export default class ResultsContainer extends React.Component {
 }
 
 const Container = glamorous.div({
-  paddingTop: "15rem",
+  paddingTop: "12rem",
   paddingBottom: "5rem",
   [style.sizes.mobile]: {
     paddingTop: "7rem",
