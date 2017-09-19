@@ -98,6 +98,13 @@ const Example = glamorous.div({
   marginRight: 10,
   padding: 10,
   alignItems: "center",
+  cursor: "pointer",
+  "&:hover": {
+    boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+    [style.sizes.mobile]: {
+      boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)",
+    },
+  },
 })
 
 const ExampleText = glamorous.div({
