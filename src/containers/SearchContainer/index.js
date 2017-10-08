@@ -43,7 +43,7 @@ export default class SearchContainer extends React.Component {
           onChange={event => performSearch(event.target.value)}
         />
 
-        {currentResults.length > 0 && this.renderBottomBar()}
+        {currentResults && currentResults.length > 0 && this.renderBottomBar()}
       </Container>
     )
   }

@@ -38,8 +38,12 @@ class App extends React.Component {
           currentDepartment: firstWord,
           loading: false,
         })
+
+        this.filterCurrentDepartment(excess)
       } else {
-        this.requestDepartment(firstWord)
+        this.requestDepartment(firstWord).then(() =>
+          this.filterCurrentDepartment(excess)
+        )
       }
     }
   }
