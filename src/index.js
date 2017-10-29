@@ -56,7 +56,11 @@ class App extends React.Component {
       let responseJSON = await response.json()
 
       if (responseJSON.length === 0) {
-        this.setState({ loading: false, currentResults: [] })
+        this.setState({
+          loading: false,
+          currentResults: [],
+          currentDepartment: "",
+        })
       } else {
         const departmentName = responseJSON[0].abbreviation.toLowerCase()
 
@@ -88,7 +92,7 @@ class App extends React.Component {
 
     let courses = cachedDepartment
 
-    if (filter.length > 0) {
+    if (filter.length > 0 && courses) {
       if (isNaN(filter)) {
         // return all courses whose title include filter
 

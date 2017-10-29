@@ -32,7 +32,7 @@ export default class SearchContainer extends React.Component {
       <Container>
         <SearchInput
           minLength={0}
-          debounceTimeout={500}
+          debounceTimeout={100}
           type="text"
           placeholder={currentSearch ? "" : "Search"}
           autoComplete="off"
