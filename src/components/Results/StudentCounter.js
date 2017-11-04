@@ -8,9 +8,10 @@ export default ({
   enrollment_is_full,
   enrollment_total,
 }) => {
-  let percent = Math.trunc(
-    Number(enrollment_current) / Number(enrollment_total) * 100
-  )
+  let percent =
+    Number(enrollment_total) === 0
+      ? 100
+      : Math.trunc(Number(enrollment_current) / Number(enrollment_total) * 100)
 
   return (
     <Container>
