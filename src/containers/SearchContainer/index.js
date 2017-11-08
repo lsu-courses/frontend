@@ -53,7 +53,7 @@ export default class SearchContainer extends React.Component {
 const Container = glamorous.div({
   backdropFilter: "blur(4px)",
   backgroundColor: "rgba(255, 255, 255, 0.08)",
-  boxShadow: "0px 29px 50px -8px rgba(0,0,0,0.10)",
+  boxShadow: "0px 29px 50px -8px rgba(0,0,0,0.16)",
   position: "fixed",
   borderRadius: 10,
   transition: "all 0.4s",
@@ -63,7 +63,16 @@ const Container = glamorous.div({
   width: 750,
   left: "50%",
   marginLeft: -(750 / 2),
-  marginTop: 30,
+  marginTop: 26,
+  transform: "scale(1.04)",
+  [style.sizes.mobile]: {
+    transform: "none",
+    width: "100%",
+    top: 0,
+    left: 0,
+    margin: 0,
+    borderRadius: 0,
+  },
 })
 
 const SearchInput = glamorous(DebounceInput)({
@@ -79,7 +88,6 @@ const SearchInput = glamorous(DebounceInput)({
   },
   [style.sizes.mobile]: {
     fontSize: "1.6rem",
-    padding: "20px 30px",
   },
 })
 

@@ -53,8 +53,8 @@ export const Container = glamorous.div({
     },
   })} 0.6s ease-in-out`,
   [style.sizes.mobile]: {
-    margin: "0 17px",
     padding: "2rem",
     marginTop: 0,
+    width: "90%",
   },
 })

@@ -17,11 +17,8 @@ class App extends React.Component {
   saveSearch(string) {
     const searches = JSON.parse(window.localStorage.getItem("searches"))
 
-    console.log(searches)
-
     if (searches) {
       const newSearches = [...searches.slice(-3), string]
-      console.log(newSearches)
       window.localStorage.setItem("searches", JSON.stringify(newSearches))
     } else {
       window.localStorage.setItem("searches", JSON.stringify([string]))

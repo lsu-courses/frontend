@@ -46,10 +46,16 @@ const Container = glamorous.div({
   maxWidth: 750,
   margin: "0 auto",
   zIndex: 9000,
+  [style.sizes.mobile]: {
+    width: "96%",
+    flexDirection: "column",
+  },
 })
 
 const Group = glamorous.div({
   display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
   zIndex: 9000,
 })
 
