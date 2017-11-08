@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import SearchContainer from "containers/SearchContainer"
 import ResultsContainer from "containers/ResultsContainer"
 import glamorous from "glamorous"
-import style from "utils/style"
+import materialColors from "utils/materialColors"
 
 class App extends React.Component {
   state = {
@@ -14,6 +14,20 @@ class App extends React.Component {
     departmentCache: [],
   }
 
+  saveSearch(string) {
+    const searches = JSON.parse(window.localStorage.getItem("searches"))
+
+    console.log(searches)
+
+    if (searches) {
+      const newSearches = [...searches.slice(-3), string]
+      console.log(newSearches)
+      window.localStorage.setItem("searches", JSON.stringify(newSearches))
+    } else {
+      window.localStorage.setItem("searches", JSON.stringify([string]))
+    }
+  }
+
   performSearch(input) {
     this.setState({ currentSearch: input, loading: true })
 
@@ -21,6 +35,8 @@ class App extends React.Component {
       this.setState({ currentResults: [], loading: false })
       return
     }
+
+    this.saveSearch(input)
 
     const lower = input.toLowerCase()
     const inputArray = lower.split(" ")
@@ -165,7 +181,7 @@ const Container = glamorous.div({
   margin: 0,
   padding: 0,
   fontFamily: "sans-serif",
-  backgroundColor: style.colors.defaultGray,
+  backgroundColor: materialColors.grey[200],
 })
 
 ReactDOM.render(<App />, document.getElementById("root"))

@@ -2,6 +2,7 @@ import React from "react"
 import DebounceInput from "react-debounce-input"
 import glamorous from "glamorous"
 import style from "utils/style"
+import materialColors from "utils/materialColors"
 
 export default class SearchContainer extends React.Component {
   renderBottomBar() {
@@ -52,22 +53,24 @@ export default class SearchContainer extends React.Component {
 const Container = glamorous.div({
   backdropFilter: "blur(4px)",
   backgroundColor: "rgba(255, 255, 255, 0.08)",
-  marginBottom: 30,
   boxShadow: "0px 29px 50px -8px rgba(0,0,0,0.10)",
   position: "fixed",
-  left: 0,
-  top: -2,
-  borderRadius: 8,
-  zIndex: 2,
+  borderRadius: 10,
   transition: "all 0.4s",
   overflow: "hidden",
-  width: "100%",
+  zIndex: 9999,
+  maxWidth: 750,
+  width: 750,
+  left: "50%",
+  marginLeft: -(750 / 2),
+  marginTop: 30,
 })
 
 const SearchInput = glamorous(DebounceInput)({
   padding: "28px 40px",
   fontSize: "2rem",
   fontWeight: 200,
+  zIndex: 9999,
   border: "none",
   transition: "all 0.4s",
   width: "100%",

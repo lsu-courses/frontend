@@ -1,48 +1,58 @@
 import React from "react"
-import SearchIcon from "./search-icon"
 import glamorous from "glamorous"
 import { css } from "glamor"
+
 import style from "utils/style"
+import Example from "components/Example"
+import Fake from "components/Example/fake"
+import materialColors from "utils/materialColors"
 
 export default class Instructions extends React.Component {
-  exampleSearch(text) {
-    const { performSearch } = this.props
-
-    return (
-      <Example onClick={() => performSearch(text)}>
-        <ExampleText>{text}</ExampleText>
-        <SearchIconStyled
-          src="/search.png"
-          alt="search"
-          color={style.colors.almostBlack}
-        />
-      </Example>
-    )
-  }
-
   render() {
     return (
-      <Container>
-        <Title>How to search</Title>
-        <InstructionsTitle>Instructions</InstructionsTitle>
+      <div>
+        <Title>Can't find what you're searching for?</Title>
+        <Group>
+          <ExampleContainer>
+            Try <Fake text={["department name"]} />, such as
+          </ExampleContainer>
+          <ExampleContainer>
+            <Example text="BIOL" performSearch={this.props.performSearch} />
+            <Example text="MATH" performSearch={this.props.performSearch} />
+          </ExampleContainer>
+        </Group>
 
-        <ExampleDescription>department name</ExampleDescription>
-        <ExampleContainer>
-          {this.exampleSearch("BIOL")}
-          {this.exampleSearch("MATH")}
-        </ExampleContainer>
+        <Group>
+          <ExampleContainer>
+            Try <Fake text={["course name", "+", "course number"]} />, such as
+          </ExampleContainer>
+          <ExampleContainer>
+            <Example
+              text="HNRS 2030"
+              performSearch={this.props.performSearch}
+            />
+            <Example
+              text="BIOL 1002"
+              performSearch={this.props.performSearch}
+            />
+          </ExampleContainer>
+        </Group>
 
-        <ExampleDescription>department name + course number</ExampleDescription>
-        <ExampleContainer>
-          {this.exampleSearch("HNRS 2030")}
-          {this.exampleSearch("BIOL 1002")}
-        </ExampleContainer>
-
-        <ExampleDescription>department name + course name</ExampleDescription>
-        <ExampleContainer>
-          {this.exampleSearch("MATH algebra")}
-          {this.exampleSearch("BIOL micro")}
-        </ExampleContainer>
+        <Group>
+          <ExampleContainer>
+            Try <Fake text={["course name", "+", "course name"]} />, such as
+          </ExampleContainer>
+          <ExampleContainer>
+            <Example
+              text="MATH algebra"
+              performSearch={this.props.performSearch}
+            />
+            <Example
+              text="BIOL micro"
+              performSearch={this.props.performSearch}
+            />
+          </ExampleContainer>
+        </Group>
 
         <Credits>
           made by <CreditsLink href="https://cmwall.io">
@@ -51,74 +61,59 @@ export default class Instructions extends React.Component {
           and{" "}
           <CreditsLink href="https://elsealabs.com">Connor Elsea</CreditsLink>
         </Credits>
-      </Container>
+      </div>
     )
   }
 }
 
-const Container = glamorous.div({
-  borderRadius: 4,
-  maxWidth: "40rem",
-  margin: "auto",
-  padding: "2rem",
-  color: style.colors.darkSlate,
-  backgroundColor: "white",
-  fontFamily: `-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif`,
-  boxShadow: `0 19px 38px rgba(0, 0, 0, 0.15), 0 15px 12px rgba(0, 0, 0, 0.1)`,
+const Title = glamorous.h2({
+  fontWeight: 100,
+  letterSpacing: 1.3,
+  fontSize: "2.5rem",
+  color: materialColors.grey[400],
   textAlign: "center",
+  marginTop: 85,
+  marginBottom: 45,
   animation: `${css.keyframes({
     "0%": {
-      transform: "translate3d(0, 50%, 0)",
-      filter: "blur(5px)",
-    },
-    "65%": {
-      transform: "translate3d(0, -3%, 0)",
+      opacity: 0,
     },
     "100%": {
-      transform: "none",
-      filter: "none",
+      opacity: 1,
     },
-  })} 0.6s linear`,
-  [style.sizes.mobile]: {
-    margin: "0 17px",
-    padding: "2rem",
-    marginTop: 0,
-  },
+  })} 1.2s ease-in-out`,
 })
 
-const Title = glamorous.div({
-  color: "gray",
-  textTransform: "uppercase",
-  fontWeight: 500,
-  letterSpacing: 1,
-  fontSize: "0.8rem",
-  marginBottom: 5,
-})
-
-const InstructionsTitle = glamorous.div({
-  fontSize: "2.7rem",
-  fontWeight: 700,
-  marginBottom: "3rem",
-  [style.sizes.mobile]: {
-    fontSize: "2rem",
-  },
-})
-
-const ExampleDescription = glamorous.div({
-  fontSize: "1.2rem",
-  fontWeight: "300",
-  margin: "1rem 0",
+const Group = glamorous.div({
+  marginBottom: 20,
+  animation: `${css.keyframes({
+    "0%": {
+      opacity: 0,
+      transform: "translate3d(0, 50%, 0)",
+    },
+    "65%": {
+      transform: "translate3d(0, -3%, 0) scale(1.03)",
+    },
+    "100%": {
+      opacity: 1,
+      transform: "none",
+    },
+  })} 1.2s ease-in-out`,
 })
 
 const ExampleContainer = glamorous.div({
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
-  marginBottom: "3rem",
+  marginBottom: "0.4rem",
+  alignItems: "center",
+  color: materialColors.grey[500],
+  marginTop: 10,
 })
 
 const Credits = glamorous.div({
-  marginTop: "4rem",
+  marginTop: "6rem",
+  textAlign: "center",
 })
 
 const CreditsLink = glamorous.a({
@@ -128,31 +123,4 @@ const CreditsLink = glamorous.a({
   "&:hover": {
     textShadow: "1px 0px 0px rgba(150, 150, 150, 1)",
   },
-})
-
-const Example = glamorous.div({
-  borderRadius: 5,
-  display: "flex",
-  flexDirection: "row",
-  marginRight: 10,
-  padding: 10,
-  alignItems: "center",
-  cursor: "pointer",
-  position: "relative",
-  boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)",
-  "&:hover": {
-    top: -1,
-    boxShadow: "0 2px 4px rgba(0,0,0,0.16), 0 2px 3px rgba(0,0,0,0.23)",
-  },
-})
-
-const ExampleText = glamorous.div({
-  color: style.colors.almostBlack,
-  fontSize: 16,
-  fontWeight: "500",
-  marginRight: 10,
-})
-
-const SearchIconStyled = glamorous(SearchIcon)({
-  color: style.colors.almostBlack,
 })
