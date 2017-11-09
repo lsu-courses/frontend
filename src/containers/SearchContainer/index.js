@@ -7,18 +7,21 @@ import materialColors from "utils/materialColors"
 export default class SearchContainer extends React.Component {
   renderBottomBar() {
     const { currentResults } = this.props
+    const dept = currentResults[0].abbreviation
 
     return (
       <JumpToContainer>
         <Jump>
-          <JumpIntro>Jump to...</JumpIntro>
+          <JumpIntro>
+            Jump To <span>{dept}</span>...
+          </JumpIntro>
 
           {currentResults.map(item => (
             <JumpLink
               key={`${item.abbreviation}_${item.number}_jump_link`}
               href={`#${item.number}`}
             >
-              {item.abbreviation} {item.number}
+              {item.number}
             </JumpLink>
           ))}
         </Jump>
@@ -32,8 +35,8 @@ export default class SearchContainer extends React.Component {
     return (
       <Container>
         <SearchInput
-          minLength={0}
-          debounceTimeout={100}
+          minLength={2}
+          debounceTimeout={2000}
           type="text"
           placeholder={currentSearch ? "" : "Search"}
           autoComplete="off"
@@ -83,6 +86,7 @@ const SearchInput = glamorous(DebounceInput)({
   border: "none",
   transition: "all 0.4s",
   width: "100%",
+  margin: 0,
   "&:focus": {
     outline: "none",
   },
@@ -92,7 +96,7 @@ const SearchInput = glamorous(DebounceInput)({
 })
 
 const JumpToContainer = glamorous.div({
-  height: 75,
+  height: 60,
   backgroundColor: style.colors.lightGray,
   borderTop: `1px solid ${style.colors.gray}`,
   borderBottom: `1px solid ${style.colors.gray}`,
@@ -101,6 +105,7 @@ const JumpToContainer = glamorous.div({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  margin: 0,
   [style.sizes.mobile]: {
     height: 60,
   },
@@ -112,27 +117,37 @@ const Jump = glamorous.div({
   overflowX: "scroll",
   overflowY: "hidden",
   whiteSpace: "nowrap",
-  height: 75,
+  height: 60,
+  "::-webkit-scrollbar": {
+    display: "none",
+  },
 })
 
 const JumpIntro = glamorous.div({
-  fontStyle: "italic",
+  letterSpacing: 1,
+  textTransform: "uppercase",
   color: "gray",
+  fontWeight: 500,
   padding: "0px 20px",
+  fontSize: "0.75rem",
   [style.sizes.mobile]: {
-    fontSize: "0.9rem",
+    fontSize: "0.75rem",
     minWidth: 100,
+  },
+  "> span": {
+    fontWeight: 800,
   },
 })
 
 const JumpLink = glamorous.a({
-  minWidth: 115,
+  minWidth: 50,
+  fontSize: "0.9rem",
   textAlign: "center",
   background: "white",
   color: style.colors.darkSlate,
   borderRadius: 8,
   margin: 5,
-  padding: "10px 3px",
+  padding: "6px 0",
   textDecoration: "none",
   boxShadow: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.14)",
   transition: "all 0.2s",

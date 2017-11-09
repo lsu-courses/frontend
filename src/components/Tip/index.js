@@ -5,6 +5,7 @@ import style from "utils/style"
 import materialColors from "utils/materialColors"
 import LightIcon from "./light-bulb"
 import { css } from "glamor"
+import Animation from "utils/Animation"
 
 export default class Example extends React.Component {
   render() {
@@ -12,7 +13,9 @@ export default class Example extends React.Component {
       <Container>
         <LightIcon color={materialColors.green[300]} />
         <Title>{this.props.title}</Title>
-        <Content>{this.props.text}</Content>
+        <Animation animationDuration={1} animationDelayOffset={0.5}>
+          <Content>{this.props.text}</Content>
+        </Animation>
       </Container>
     )
   }
@@ -33,23 +36,26 @@ const Title = glamorous.div({
   color: "white",
   background: materialColors.green[300],
   borderRadius: 4,
-  padding: "2px 5px",
+  padding: "2px 8px",
   textTransform: "uppercase",
-  fontWeight: 600,
+  fontWeight: 700,
   letterSpacing: 1,
   fontSize: "0.75rem",
   marginTop: 3,
   animation: `${css.keyframes({
     "0%": {
       transform: "scale(1)",
+      boxShadow: "none",
     },
     "65%": {
-      transform: "scale(1.06)",
+      transform: "scale(1.12)",
+      boxShadow: shadow(300),
     },
     "100%": {
-      transform: "scale(1)",
+      transform: "none",
+      boxShadow: "none",
     },
-  })} 0.6s infinite`,
+  })} 0.9s infinite`,
 })
 
 const Content = glamorous.div({

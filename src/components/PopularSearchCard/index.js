@@ -4,14 +4,28 @@ import Example from "components/Example"
 import glamorous from "glamorous"
 import materialColors from "utils/materialColors"
 import Tip from "components/Tip"
+import Animation from "utils/Animation"
+import { css } from "glamor"
 
 class PopularSearchCard extends React.Component {
   render() {
     return (
       <Container style={{ marginTop: 50 }}>
         <CardHeader>
-          <Title>Trending</Title>
-          <Subtitle>Popular Searches</Subtitle>
+          <Animation
+            animation={css.keyframes("fadeIn", {
+              from: { opacity: 0, transform: "translateX(-10px)" },
+              to: { opacity: 1, transform: "translateX(0)" },
+            })}
+            initialStyle={{
+              opacity: 0,
+            }}
+            animationDuration={1}
+            animationDelayOffset={0.8}
+          >
+            <Title>Trending</Title>
+            <Subtitle>Popular Searches</Subtitle>
+          </Animation>
         </CardHeader>
 
         <div
