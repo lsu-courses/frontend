@@ -43,7 +43,9 @@ export default class RecentSearch extends React.Component {
       this.setState({
         styles: { opacity: "0", transform: "scale(0.7)" },
       })
-    } else {
+    }
+
+    if (scrollTop < 25 && this.state.styles.opacity === "0") {
       this.setState({
         styles: { opacity: "1", transform: "scale(1)" },
       })
@@ -86,7 +88,7 @@ const Container = glamorous.div(({ styles }) => ({
     flexDirection: "column",
   },
   ...styles,
-  transition: "all 1s",
+  transition: "all 0.6s",
 }))
 
 const Group = glamorous.div({

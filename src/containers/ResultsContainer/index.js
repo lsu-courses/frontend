@@ -30,7 +30,7 @@ export default class ResultsContainer extends React.Component {
       ]
     } else {
       return [
-        <RecentSearch performSearch={performSearch} />,
+        !loading && <RecentSearch performSearch={performSearch} />,
         <PopularSearchCard performSearch={performSearch} />,
         <Instructions performSearch={performSearch} />,
       ]

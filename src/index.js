@@ -26,18 +26,22 @@ class App extends React.Component {
   }
 
   performSearch(input) {
-    this.setState({ currentSearch: input, loading: true })
+    console.log("performing search")
 
     if (input.length < 2) {
       this.setState({ currentResults: [], loading: false })
       return
+    } else {
+      this.setState({ currentSearch: input, loading: true })
     }
 
     this.saveSearch(input)
 
+    console.log(input)
+
     const lower = input.toLowerCase()
     const inputArray = lower.split(" ")
-    const firstWord = inputArray[0]
+    const firstWord = inputArray[0].toUpperCase()
     const excess = inputArray.splice(1).join("")
 
     if (this.state.currentDepartment === firstWord) {
@@ -46,6 +50,7 @@ class App extends React.Component {
       const { departmentCache } = this.state
 
       if (departmentCache[firstWord]) {
+        console.log("drawing from cache")
         this.setState({
           currentResults: departmentCache[firstWord],
           currentDepartment: firstWord,
