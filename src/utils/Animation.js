@@ -1,34 +1,36 @@
 import React from "react"
 import { css } from "glamor"
 
-export default ({
-  children,
-  animation,
-  animationDelay,
-  animationDuration,
-  animationDelayOffset,
-  initialStyle,
-}) =>
-  children
-    ? React.Children.map(
-        children,
-        (child, index) =>
-          child &&
-          React.cloneElement(child, {
-            style: {
-              ...child.props.style,
-              ...animatorStyle(
-                index,
-                animation,
-                animationDelay,
-                animationDuration,
-                animationDelayOffset,
-                initialStyle
-              ),
-            },
-          })
-      )
-    : ""
+// export default ({
+//   children,
+//   animation,
+//   animationDelay,
+//   animationDuration,
+//   animationDelayOffset,
+//   initialStyle,
+// }) =>
+//   children
+//     ? React.Children.map(
+//         children,
+//         (child, index) =>
+//           child &&
+//           React.cloneElement(child, {
+//             style: {
+//               ...child.props.style,
+//               ...animatorStyle(
+//                 index,
+//                 animation,
+//                 animationDelay,
+//                 animationDuration,
+//                 animationDelayOffset,
+//                 initialStyle
+//               ),
+//             },
+//           })
+//       )
+//     : ""
+
+export default props => props.children
 
 const animatorStyle = (
   index,
